@@ -1,0 +1,10 @@
+[
+    {
+        "caption": "SublimeREPL: AML",
+        "command": "run_existing_window_command", "args":
+        {
+            "id": "repl_aml",
+            "file": "config/AML/Main.sublime-menu"
+        }
+    }
+]

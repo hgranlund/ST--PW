@@ -1,0 +1,28 @@
+[
+     {
+        "id": "tools",
+        "children":
+        [{
+            "caption": "SublimeREPL",
+            "mnemonic": "r",
+            "id": "SublimeREPL",
+            "children":
+            [
+                {"command": "repl_open",
+                "id": "repl_aml",
+                 "caption": "AML",
+                 "args": {
+                    "type": "subprocess",
+                    "encoding": "utf8",
+                    "cmd": ["AML5-startup-Win32"],
+                    "cwd": "$file_path",
+                    "syntax": "Packages/Lisp/Lisp.tmLanguage",
+                    "suppress_echo": true, 
+                    "external_id": "aml"
+                    }
+                }
+            ]
+        }]
+    }
+]
+                
