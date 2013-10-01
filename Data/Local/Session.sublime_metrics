@@ -1,5 +1,13 @@
 {
 	"licensed": false,
-	"startup_sec": 1.4134726,
-	"time": 0
+	"packages":
+	[
+		"Package Control"
+	],
+	"startup_sec": 0.1218545,
+	"syntax":
+	{
+		"JSON": 1
+	},
+	"time": 1380617060
 }

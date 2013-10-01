@@ -1,15 +1,15 @@
 {
 	"folder_history":
 	[
+		"/C/Users/Simen/ST--PW"
 	],
 	"last_version": 3047,
-	"last_window_id": 1,
+	"last_window_id": 2,
 	"log_indexing": false,
 	"settings":
 	{
-	},
-	"windows":
-	[
+		"new_window_height": 480.0,
+		"new_window_settings":
 		{
 			"auto_complete":
 			{
@@ -17,18 +17,6 @@
 				[
 				]
 			},
-			"buffers":
-			[
-				{
-					"contents": "import urllib.request,os;\npf = 'Package Control.sublime-package';\npp = sublime.installed_packages_path(); \nuirllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) );\nopen(os.path.join(ipp, pf), 'wb').write(urllib.request.urlopen( 'http://sublime.wbond.net/' + pf.replace(' ','%20')).read())\n",
-					"settings":
-					{
-						"buffer_size": 327,
-						"line_ending": "Windows",
-						"name": "import urllib.request,os;"
-					}
-				}
-			],
 			"build_system": "",
 			"command_palette":
 			{
@@ -93,6 +81,148 @@
 				"whole_word": false,
 				"wrap": true
 			},
+			"incremental_find":
+			{
+				"height": 0.0
+			},
+			"input":
+			{
+				"height": 0.0
+			},
+			"menu_visible": true,
+			"replace":
+			{
+				"height": 0.0
+			},
+			"save_all_on_build": true,
+			"select_file":
+			{
+				"height": 0.0,
+				"selected_items":
+				[
+				],
+				"width": 0.0
+			},
+			"select_project":
+			{
+				"height": 0.0,
+				"selected_items":
+				[
+				],
+				"width": 0.0
+			},
+			"select_symbol":
+			{
+				"height": 0.0,
+				"selected_items":
+				[
+				],
+				"width": 0.0
+			},
+			"show_minimap": true,
+			"show_open_files": false,
+			"show_tabs": true,
+			"side_bar_visible": true,
+			"side_bar_width": 150.0,
+			"status_bar_visible": true,
+			"template_settings":
+			{
+			}
+		},
+		"new_window_width": 640.0
+	},
+	"windows":
+	[
+		{
+			"auto_complete":
+			{
+				"selected_items":
+				[
+				]
+			},
+			"buffers":
+			[
+				{
+					"file": "Data/Packages/User/Preferences.sublime-settings",
+					"settings":
+					{
+						"buffer_size": 78,
+						"line_ending": "Windows"
+					}
+				}
+			],
+			"build_system": "",
+			"command_palette":
+			{
+				"height": 104.0,
+				"selected_items":
+				[
+					[
+						"pack",
+						"Preferences: Browse Packages"
+					]
+				],
+				"width": 400.0
+			},
+			"console":
+			{
+				"height": 126.0,
+				"history":
+				[
+					"import urllib.request,os; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); open(os.path.join(ipp, pf), 'wb').write(urllib.request.urlopen( 'http://sublime.wbond.net/' + pf.replace(' ','%20')).read())",
+					"import urllib.request,os;",
+					"uirllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) );",
+					"pp = sublime.installed_packages_path(); ",
+					"pf = 'Package Control.sublime-package';",
+					"import urllib.request,os;",
+					"ccc",
+					"import urllib2,os; pf='Package Control.sublime-package'; ipp = sublime.installed_packages_path(); os.makedirs( ipp ) if not os.path.exists(ipp) else None; urllib2.install_opener( urllib2.build_opener( urllib2.ProxyHandler( ))); open( os.path.join( ipp, pf), 'wb' ).write( urllib2.urlopen( 'http://sublime.wbond.net/' +pf.replace( ' ','%20' )).read()); print( 'Please restart Sublime Text to finish installation')"
+				]
+			},
+			"distraction_free":
+			{
+				"menu_visible": true,
+				"show_minimap": false,
+				"show_open_files": false,
+				"show_tabs": false,
+				"side_bar_visible": false,
+				"status_bar_visible": false
+			},
+			"file_history":
+			[
+				"/C/Users/Simen/ST--PW/Data/Packages/User/Package Control.sublime-settings",
+				"/C/Users/Simen/ST--PW/Data/Packages/Package Control/Package Control.sublime-settings"
+			],
+			"find":
+			{
+				"height": 0.0
+			},
+			"find_in_files":
+			{
+				"height": 0.0,
+				"where_history":
+				[
+				]
+			},
+			"find_state":
+			{
+				"case_sensitive": false,
+				"find_history":
+				[
+				],
+				"highlight": true,
+				"in_selection": false,
+				"preserve_case": false,
+				"regex": false,
+				"replace_history":
+				[
+				],
+				"reverse": false,
+				"show_context": true,
+				"use_buffer2": true,
+				"whole_word": false,
+				"wrap": true
+			},
 			"groups":
 			[
 				{
@@ -101,24 +231,24 @@
 					[
 						{
 							"buffer": 0,
+							"file": "Data/Packages/User/Preferences.sublime-settings",
 							"semi_transient": false,
 							"settings":
 							{
-								"buffer_size": 327,
+								"buffer_size": 78,
 								"regions":
 								{
 								},
 								"selection":
 								[
 									[
-										327,
-										327
+										78,
+										78
 									]
 								],
 								"settings":
 								{
-									"auto_name": "import urllib.request,os;",
-									"syntax": "Packages/Text/Plain text.tmLanguage"
+									"syntax": "Packages/JavaScript/JSON.tmLanguage"
 								},
 								"translation.x": 0.0,
 								"translation.y": 0.0,
@@ -160,8 +290,8 @@
 				]
 			},
 			"menu_visible": true,
-			"position": "0,0,1,-32000,-32000,-1,-1,591,52,52,708",
-			"project": "",
+			"position": "0,2,2,-32000,-32000,-1,-1,591,52,52,708",
+			"project": "ST..PW.sublime-project",
 			"replace":
 			{
 				"height": 0.0
@@ -204,13 +334,14 @@
 			{
 			},
 			"window_id": 1,
-			"workspace_name": ""
+			"workspace_name": "/C/Users/Simen/ST--PW/ST..PW.sublime-workspace"
 		}
 	],
 	"workspaces":
 	{
 		"recent_workspaces":
 		[
+			"/C/Users/Simen/ST--PW/ST..PW.sublime-workspace"
 		]
 	}
 }
