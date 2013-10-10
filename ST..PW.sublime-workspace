@@ -3,25 +3,145 @@
 	{
 		"selected_items":
 		[
+			[
+				"wr",
+				"write_bytes"
+			],
+			[
+				"read",
+				"read_bytes"
+			],
+			[
+				"e",
+				"ECHO"
+			]
 		]
 	},
 	"buffers":
 	[
 		{
-			"file": "Data/Packages/User/Preferences.sublime-settings",
+			"file": "Data/Packages/SublimeREPL/repls/subprocess_repl.py",
 			"settings":
 			{
-				"buffer_size": 78,
+				"buffer_size": 8640,
 				"line_ending": "Windows"
+			}
+		},
+		{
+			"contents": "",
+			"settings":
+			{
+				"buffer_size": 0,
+				"line_ending": "Windows",
+				"name": "*REPL* [aml]",
+				"scratch": true
+			}
+		},
+		{
+			"contents": "\nC:\\TechnoSoft\\AML\\AML-Training>ECHO OFF \nChecking out license AML_FEATURE_1_1_1_0 \n;;; +----------------------------------------------------------------+\n;;; |                  ADAPTIVE MODELING LANGUAGE                    |\n;;; |                      AML Version 5.72.10 Release               |\n;;; +----------------------------------------------------------------+\n;;; |                                                                |\n;;; |        _                                                       |\n;;; |    \\\\|| /                            11180 Reed Hartman Hwy    |\n;;; |     \\||/                             Cincinnati, Ohio 45242    |\n;;; |     /||\\                             Phone: (513) 985 - 9877   |\n;;; |    /_||\\\\ TechnoSoft Inc.            Fax:   (513) 985 - 0522   |\n;;; |                                                                |\n;;; +----------------------------------------------------------------+\n;;; Development Environment Version AML Version 5.72.10, 21-Jan-2013\n;;; Copyright (C) 1993 -- 2013 by TechnoSoft Inc.\n;;; All Rights Reserved\n;;;\n;;; This software product contains confidential and trade secret information\n;;; belonging to TechnoSoft Inc.  It may not be copied for any reason other than\n;;; for archival and backup purposes.\n;;;\n;;; TechnoSoft and Adaptive Modeling Language are trademarks of TechnoSoft Inc.\n\nLoading C:\\TechnoSoft\\AML\\AML-Training\\AML\\AML5_Win32\\lib\\amlXMLParser.dll ... done\nLoading C:\\TechnoSoft\\AML\\AML-Training\\AML\\AML5_Win32\\lib\\AmlZip.dll ... done\nLoading C:\\TechnoSoft\\AML\\AML-Training\\AML\\AML5_Win32\\lib\\ipc.dll ... done\nLoading C:\\TechnoSoft\\AML\\AML-Training\\AML\\AML5_Win32\\lib\\merge_files.dll ... done\nLoading C:\\TechnoSoft\\AML\\AML-Training\\AML\\AML5_Win32\\lib\\parse.dll ... done\nLoading C:\\TechnoSoft\\AML\\AML-Training\\AML\\AML5_Win32\\lib\\TS_VIL.dll ... Qt: Untested Windows version 6.2 detected!\ndone\nLoading patches ...\nLoading File : C:\\TechnoSoft\\AML\\AML-Training\\AML\\AML5_Win32\\patches\\bins\\0241-datagraph.btc ...... done\nLoading File : C:\\TechnoSoft\\AML\\AML-Training\\AML\\AML5_Win32\\patches\\bins\\0246-toggle-ui-menu-item.btc ...... done\nLoading File : C:\\TechnoSoft\\AML\\AML-Training\\AML\\AML5_Win32\\patches\\bins\\0247-get-geom-map.btc ...... done\nLoading File : C:\\TechnoSoft\\AML\\AML-Training\\AML\\AML5_Win32\\patches\\bins\\0248-ui-menu-item-class.btc ...... done\nLoading File : C:\\TechnoSoft\\AML\\AML-Training\\AML\\AML5_Win32\\patches\\bins\\0249-ui-toggle-property-menu-item-class.btc ...... done\nLoading File : C:\\TechnoSoft\\AML\\AML-Training\\AML\\AML5_Win32\\patches\\bins\\0250-ui-menu-item-class-callback-enhancement.btc ...... done\nLoading File : C:\\TechnoSoft\\AML\\AML-Training\\AML\\AML5_Win32\\patches\\bins\\0251-ui-menu-button-update.btc ...... done\nLoading File : C:\\TechnoSoft\\AML\\AML-Training\\AML\\AML5_Win32\\patches\\bins\\0252-points-align.btc ...... done\nLoading File : C:\\TechnoSoft\\AML\\AML-Training\\AML\\AML5_Win32\\patches\\bins\\0253-xml-node-get-label.btc ...... done\nLoading File : C:\\TechnoSoft\\AML\\AML-Training\\AML\\AML5_Win32\\patches\\bins\\0255-ui-multiple-object-selection-button-content.btc ...... done\nLoading File : C:\\TechnoSoft\\AML\\AML-Training\\AML\\AML5_Win32\\patches\\bins\\0256-ui-apply-action-method.btc ...... done\nLoading File : C:\\TechnoSoft\\AML\\AML-Training\\AML\\AML5_Win32\\patches\\bins\\0257-ui-typein-field-validate-input.btc ...... done\nLoading File : C:\\TechnoSoft\\AML\\AML-Training\\AML\\AML5_Win32\\patches\\bins\\0258-aml-xml-export.btc ...... done\nLoading File : C:\\TechnoSoft\\AML\\AML-Training\\AML\\AML5_Win32\\patches\\bins\\0259-tokenize-mltext-string.btc ...... done\nLoading File : C:\\TechnoSoft\\AML\\AML-Training\\AML\\AML5_Win32\\patches\\bins\\0260-tokenize-mltext-string.btc ...... done\nLoading File : C:\\TechnoSoft\\AML\\AML-Training\\AML\\AML5_Win32\\patches\\bins\\3187-geometry-exchange.btc ...... done\nLoading File : C:\\TechnoSoft\\AML\\AML-Training\\AML\\AML5_Win32\\patches\\bins\\3188-geometry-exchange.btc ...... done\nLoading File : C:\\TechnoSoft\\AML\\AML-Training\\AML\\AML5_Win32\\patches\\bins\\3190-geometry-exchange.btc ...... done\nLoading File : C:\\TechnoSoft\\AML\\AML-Training\\AML\\AML5_Win32\\patches\\bins\\3191-geometry-exchange.btc ...... done\nLoading File : C:\\TechnoSoft\\AML\\AML-Training\\AML\\AML5_Win32\\patches\\bins\\3192-geometry-exchange.btc ...... done\nLoading File : C:\\TechnoSoft\\AML\\AML-Training\\AML\\AML5_Win32\\patches\\bins\\3193-geometry-exchange.btc ...... done\nLoading File : C:\\TechnoSoft\\AML\\AML-Training\\AML\\AML5_Win32\\patches\\bins\\3194-geometry-exchange.btc ...... done\nLoading File : C:\\TechnoSoft\\AML\\AML-Training\\AML\\AML5_Win32\\patches\\bins\\3196-geometry-exchange.btc ...... done\nLoading File : C:\\TechnoSoft\\AML\\AML-Training\\AML\\AML5_Win32\\patches\\bins\\3197-geometry-exchange.btc ...... done\nLoading File : C:\\TechnoSoft\\AML\\AML-Training\\AML\\AML5_Win32\\patches\\bins\\3198-geometry-exchange.btc ...... done\nLoading File : C:\\TechnoSoft\\AML\\AML-Training\\AML\\AML5_Win32\\patches\\bins\\4101-model-save.btc ...... done\nLoading Patches ... done\nLoading module file: C:\\TechnoSoft\\AML\\AML-Training\\Modules\\ampublish-module-01-02\\ampublish-module.btc ......WARNING : Loading file (compiled in older AML version) : C:\\TechnoSoft\\AML\\AML-Training\\Modules\\ampublish-module-01-02\\ampublish-module.btc\ndone\nLoading module file: C:\\TechnoSoft\\AML\\AML-Training\\Modules\\aml-analysis-module-pack-type-2-01-64\\aml-analysis-module-pack-type-2.btc ......WARNING : Loading file (compiled in older AML version) : C:\\TechnoSoft\\AML\\AML-Training\\Modules\\aml-analysis-module-pack-type-2-01-64\\aml-analysis-module-pack-type-2.btc\nLoading C:\\TechnoSoft\\AML\\AML-Training\\Modules\\aml-analysis-module-pack-type-2-01-64\\lib\\windows\\OctreeLibrary.dll ... done\nChecking out license AML_FEATURE_13_1_0_0 \nLoading C:\\TechnoSoft\\AML\\AML-Training\\Modules\\aml-analysis-module-pack-type-2-01-64\\lib\\windows\\patran_meshdb_interface.dll ... done\nLoading C:\\TechnoSoft\\AML\\AML-Training\\Modules\\aml-analysis-module-pack-type-2-01-64\\lib\\windows\\amlMeshQualityLib.dll ... done\nLoading C:\\TechnoSoft\\AML\\AML-Training\\Modules\\aml-analysis-module-pack-type-2-01-64\\lib\\windows\\libStretching.dll ... done\nLoading C:\\TechnoSoft\\AML\\AML-Training\\Modules\\aml-analysis-module-pack-type-2-01-64\\lib\\windows\\BESweeper.dll ... done\nChecking out license AML_FEATURE_62_1_0_0 \nLoading C:\\TechnoSoft\\AML\\AML-Training\\Modules\\aml-analysis-module-pack-type-2-01-64\\lib\\windows\\libAMLPaver.dll ... done\ndone\nLoading module file: C:\\TechnoSoft\\AML\\AML-Training\\Modules\\amsketcher-module-03-46\\amsketcher-module.btc ......Checking out license AML_FEATURE_29_1_0_0 \nWARNING : Loading file (compiled in older AML version) : C:\\TechnoSoft\\AML\\AML-Training\\Modules\\amsketcher-module-03-46\\amsketcher-module.btc\nLoading C:\\TechnoSoft\\AML\\AML-Training\\Modules\\amsketcher-module-03-46\\lib\\windows\\c2aml.dll ... done\nChecking out license AML_FEATURE_12_1_0_0 \nLoading C:\\TechnoSoft\\AML\\AML-Training\\Modules\\amsketcher-module-03-46\\lib\\windows\\xlaut7.dll ... done\ndone\nnil\nLost license, cannot re-connect: Licensed number of users already reached.\nFeature:       AML_FEATURE_12_1_0_0\nLicense path:  27000@localhost;\nFLEXnet Licensing error:-4,23\nFor further information, refer to the FLEXnet Licensing documentation,\navailable at \"www.flexerasoftware.com\".\n\"simen\"\n\n***Repl Closed***\n",
+			"settings":
+			{
+				"buffer_size": 7297,
+				"line_ending": "Windows",
+				"name": "*REPL* [aml]",
+				"read_only": true,
+				"scratch": true
+			}
+		},
+		{
+			"contents": "# -*- coding: utf-8 -*-\n# Copyright (c) 2011, Wojciech Bederski (wuub.net)\n# All rights reserved.\n# See LICENSE.txt for details.\nimport os\nimport re\nfrom . import subprocess_repl\n\n# PowerShell in interactive mode shows no prompt, so we must hold it by hand.\n# Every command prepended with other command, which will output only one character ('.')\n# When user command leads to no output (for example, 'cd ..'), we get only this character,\n# and then we send command to show prompt explicitly.\n# No output at all means, that PowerShell needs more input (multiline mode).\n# In this case we proceeds sending user input without modifications.\n\nclass PowershellRepl(subprocess_repl.SubprocessRepl):\n    TYPE = \"powershell\"\n    PREPENDER = b\".\"\n\n    def __init__(self, encoding, **kwds):\n        if not encoding:\n            # Detect encoding\n            chcp = os.popen('chcp')\n            chcp_encoding = re.match(r'[^\\d]+(\\d+)', chcp.read())\n            if not chcp_encoding:\n                raise LookupError(\"Can't detect encoding from chcp\")\n            encoding = \"cp\" + chcp_encoding.groups()[0]\n            print(encoding)\n\n        super(PowershellRepl, self).__init__(encoding, **kwds)\n\n        # Using this to detect whether PowerShell returns some output or it needs more input\n        # PowerShell in interactive mode doesn't show prompt, so we must hold it by hand\n        # It's a hack and, for example, we can send 'Write-Host \"\" -NoNewLine' with no output, but in outhr cases it may work well\n        self.got_output = True\n        self.multiline = False\n\n        self.prompt()\n\n    def read_bytes(self):\n        # this is windows specific problem, that you cannot tell if there\n        # are more bytes ready, so we read only 1 at a times\n\n        result = super(PowershellRepl, self).read_bytes()\n\n        # Consumes output (it must be equal to PREPENDER)\n        if result and not self.got_output:\n            self.got_output = True\n            self.multiline = False\n            self.prompt()\n            # Don't return PREPENDER, read another input\n            return self.read_bytes()\n\n        return result\n\n    def write_bytes(self, bytes):\n        # Drop flag on new input\n        self.got_output = False\n        if not self.multiline:\n            # Turn multiline mode on, it will be turned off, when PowerShell returns some output\n            self.multiline = True\n            self.prepend()\n        self.do_write(bytes)\n\n    def do_write(self, bytes):\n",
+			"file": "Data/Packages/SublimeREPL/repls/powershell_repl.py",
+			"file_size": 2601,
+			"file_write_time": 130258035879727058,
+			"settings":
+			{
+				"buffer_size": 2474,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "Data/Packages/SublimeREPL/config/AML/Main.sublime-menu",
+			"settings":
+			{
+				"buffer_size": 978,
+				"line_ending": "Unix"
 			}
 		}
 	],
 	"build_system": "",
 	"command_palette":
 	{
-		"height": 104.0,
+		"height": 392.0,
 		"selected_items":
 		[
+			[
+				"aml",
+				"SublimeREPL: AML"
+			],
+			[
+				"amk",
+				"Set Syntax: Makefile"
+			],
+			[
+				"mal",
+				"SublimeREPL: Matlab"
+			],
+			[
+				"power",
+				"SublimeREPL: PowerShell"
+			],
+			[
+				"shell",
+				"SublimeREPL: Shell"
+			],
+			[
+				"clis",
+				"SublimeREPL: Clisp"
+			],
+			[
+				"install",
+				"Package Control: Install Package"
+			],
+			[
+				"cloj",
+				"SublimeREPL: Clojure"
+			],
+			[
+				"remve",
+				"Package Control: Remove Package"
+			],
+			[
+				"clo",
+				"SublimeREPL: Clojure"
+			],
+			[
+				"gitch",
+				"Git: Checkout Current File"
+			],
+			[
+				"check",
+				"Git: Checkout Current File"
+			],
+			[
+				"pyth",
+				"SublimeREPL: Python"
+			],
+			[
+				"clisp",
+				"SublimeREPL: Clisp"
+			],
+			[
+				"python",
+				"SublimeREPL: Python"
+			],
+			[
+				"am",
+				"SublimeREPL: AML"
+			],
+			[
+				"rein",
+				"Indentation: Reindent Lines"
+			],
 			[
 				"pack",
 				"Preferences: Browse Packages"
@@ -31,9 +151,18 @@
 	},
 	"console":
 	{
-		"height": 126.0,
+		"height": 292.0,
 		"history":
 		[
+			"print('ffff','ffff')",
+			"print \"ffff\"",
+			"print(\"ffff\")",
+			"log('dd')",
+			"print \"hei\"",
+			"sublime.log_commands(True)",
+			"sublime.log_commands(true)",
+			"h",
+			"f",
 			"import urllib.request,os; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); open(os.path.join(ipp, pf), 'wb').write(urllib.request.urlopen( 'http://sublime.wbond.net/' + pf.replace(' ','%20')).read())",
 			"import urllib.request,os;",
 			"uirllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) );",
@@ -55,18 +184,38 @@
 	},
 	"file_history":
 	[
+		"/C/Users/Simen/ST--PW/Data/Packages/User/Default (Windows).sublime-keymap",
+		"/C/Users/Simen/ST--PW/Data/Packages/SublimeREPL/config/AML/Main.sublime-menu",
+		"/C/Users/Simen/ST--PW/Data/Packages/User/SublimeREPL.sublime-settings",
+		"/C/Users/Simen/ST--PW/Data/Packages/SublimeREPL/repls/powershell_repl.py",
+		"/C/Users/Simen/ST--PW/Data/Packages/SublimeREPL/repls/subprocess_repl.py",
+		"/C/TechnoSoft/AML/AML-Training/AML5-startup-Win32.bat",
+		"/C/Users/Simen/ST--PW/Data/Packages/Default/Default (Windows).sublime-keymap",
+		"/C/Users/Simen/ST--PW/ST..PW.sublime-project",
+		"/C/Users/Simen/ST--PW/Data/Packages/SublimeREPL/config/Clojure/Main.sublime-menu",
+		"/C/Users/Simen/ST--PW/Data/Packages/SideBarEnhancements/CHANGELOG",
+		"/C/TechnoSoft/AML/AML-Training/AML5-startup-Win32-subl.bat",
+		"/C/Users/Simen/ST--PW/Data/Packages/SublimeREPL/config/Main.sublime-menu.template",
+		"/C/Users/Simen/Downloads/lein.bat",
+		"/C/Users/Simen/ST--PW/Data/Packages/SublimeREPL/config/AML/Default.sublime-commands",
+		"/C/Users/Simen/ST--PW/Data/Packages/User/Preferences.sublime-settings",
 		"/C/Users/Simen/ST--PW/Data/Packages/User/Package Control.sublime-settings",
 		"/C/Users/Simen/ST--PW/Data/Packages/Package Control/Package Control.sublime-settings"
 	],
 	"find":
 	{
-		"height": 0.0
+		"height": 34.0
 	},
 	"find_in_files":
 	{
-		"height": 0.0,
+		"height": 90.0,
 		"where_history":
 		[
+			"C:\\Users\\Simen\\ST--PW\\Data\\Packages\\SublimeREPL\\",
+			"C:\\Users\\Simen\\ST--PW\\Data\\Packages\\SublimeREPL\\config",
+			"Data/config",
+			"Data\\config",
+			""
 		]
 	},
 	"find_state":
@@ -74,6 +223,24 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"def ",
+			"powershell",
+			"read_bytes",
+			"got_output",
+			"win",
+			"print",
+			"file_path",
+			"unsupp",
+			"try",
+			"print ",
+			"print",
+			"bytes",
+			"stdout",
+			"\\",
+			"extend_env",
+			"type",
+			"                    \"type\": \"subprocess\",\n\"type\":",
+			"\\"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -96,24 +263,214 @@
 			[
 				{
 					"buffer": 0,
-					"file": "Data/Packages/User/Preferences.sublime-settings",
+					"file": "Data/Packages/SublimeREPL/repls/subprocess_repl.py",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 78,
+						"buffer_size": 8640,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								78,
-								78
+								7410,
+								7410
+							],
+							[
+								7458,
+								7458
+							],
+							[
+								7508,
+								7508
+							],
+							[
+								7579,
+								7579
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/JavaScript/JSON.tmLanguage"
+							"syntax": "Packages/Python/Python.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 3430.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 0,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"auto_complete": true,
+							"auto_indent": false,
+							"detect_indentation": false,
+							"gutter": false,
+							"history_arrows": true,
+							"indent_subsequent_lines": false,
+							"line_numbers": false,
+							"repl": true,
+							"repl_external_id": "aml",
+							"repl_id": "50bcd545573048f889c486abc8fb8a88",
+							"repl_restart_args":
+							{
+								"cmd":
+								[
+									"AML5-startup-Win32.bat"
+								],
+								"cmd_postfix": "\n",
+								"cwd": "C:\\TechnoSoft\\AML\\AML-Training",
+								"encoding":
+								{
+									"linux": "utf-8",
+									"osx": "utf-8",
+									"windows": "$win_cmd_encoding"
+								},
+								"external_id": "aml",
+								"suppress_echo": true,
+								"syntax": "Packages/Lisp/Lisp.tmLanguage",
+								"type": "subprocess"
+							},
+							"repl_sublime2": false,
+							"smart_indent": false,
+							"spell_check": false,
+							"syntax": "Packages/Lisp/Lisp.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 7297,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								7297,
+								7297
+							]
+						],
+						"settings":
+						{
+							"auto_complete": true,
+							"auto_indent": false,
+							"detect_indentation": false,
+							"gutter": false,
+							"history_arrows": true,
+							"indent_subsequent_lines": false,
+							"line_numbers": false,
+							"repl": true,
+							"repl_external_id": "aml",
+							"repl_id": "6d5dad9f26ed4246b3f3a1e00a264149",
+							"repl_restart_args":
+							{
+								"cmd":
+								[
+									"AML5-startup-Win32.bat"
+								],
+								"cmd_postfix": "\n",
+								"cwd": "C:\\TechnoSoft\\AML\\AML-Training",
+								"encoding":
+								{
+									"linux": "utf-8",
+									"osx": "utf-8",
+									"windows": "$win_cmd_encoding"
+								},
+								"external_id": "aml",
+								"suppress_echo": true,
+								"syntax": "Packages/Lisp/Lisp.tmLanguage",
+								"type": "subprocess"
+							},
+							"repl_sublime2": false,
+							"smart_indent": false,
+							"spell_check": false,
+							"syntax": "Packages/Lisp/Lisp.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 1322.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "Data/Packages/SublimeREPL/repls/powershell_repl.py",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 2474,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								2474,
+								2474
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Makefile/Makefile.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 918.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": "Data/Packages/SublimeREPL/config/AML/Main.sublime-menu",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 978,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								411,
+								411
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JSON.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
@@ -126,7 +483,7 @@
 	],
 	"incremental_find":
 	{
-		"height": 0.0
+		"height": 34.0
 	},
 	"input":
 	{
@@ -155,10 +512,14 @@
 		]
 	},
 	"menu_visible": true,
+	"output.exec":
+	{
+		"height": 118.0
+	},
 	"project": "ST..PW.sublime-project",
 	"replace":
 	{
-		"height": 0.0
+		"height": 48.0
 	},
 	"save_all_on_build": true,
 	"select_file":
@@ -166,6 +527,10 @@
 		"height": 0.0,
 		"selected_items":
 		[
+			[
+				"power",
+				"Data\\Packages\\SublimeREPL\\repls\\powershell_repl.py"
+			]
 		],
 		"width": 0.0
 	},
@@ -192,7 +557,7 @@
 	"show_open_files": false,
 	"show_tabs": true,
 	"side_bar_visible": true,
-	"side_bar_width": 150.0,
+	"side_bar_width": 269.0,
 	"status_bar_visible": true,
 	"template_settings":
 	{
