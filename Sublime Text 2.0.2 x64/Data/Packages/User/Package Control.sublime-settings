@@ -1,7 +1,6 @@
 {
 	"installed_packages":
 	[
-		"Package Control",
-		"SublimeREPL"
+		"Package Control"
 	]
 }
