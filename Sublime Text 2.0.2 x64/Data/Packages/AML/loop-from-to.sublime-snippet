@@ -1,0 +1,8 @@
+<snippet>
+	<content><![CDATA[
+(loop for ${1:i} from ${2:1} to ${3:10} 
+	do (${4:print i})) 
+]]></content>
+	<tabTrigger>loop</tabTrigger>
+	<scope>source.aml</scope>
+</snippet>
