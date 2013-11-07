@@ -1,0 +1,7 @@
+{
+  "definitions":
+  [
+    "(defun $NAME$",
+    "(define-class $NAME$"
+  ]
+}
