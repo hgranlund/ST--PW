@@ -1,8 +1,9 @@
 {
 	"folder_history":
 	[
+		"/C/Users/Simen/Documents/GitHub/ST--PW/Sublime Text 2.0.2 x64/Data/Packages"
 	],
-	"last_window_id": 2,
+	"last_window_id": 3,
 	"settings":
 	{
 		"new_window_height": 480.0,
@@ -179,13 +180,42 @@
 			},
 			"buffers":
 			[
+				{
+					"file": "/C/Users/Simen/Documents/GitHub/ST--PW/Sublime Text 2.0.2 x64/Data/Packages/AMLRepl/demo.lisp",
+					"settings":
+					{
+						"buffer_size": 108,
+						"line_ending": "Windows"
+					}
+				},
+				{
+					"contents": "\nC:\\Users\\Simen\\Documents\\GitHub\\ST--PW\\Sublime Text 2.0.2 x64>echo off \n;;; +----------------------------\n------------------------------------+\n;;; |                  ADAPTIVE MODELING LANGUAGE                    |\n;;; |                      AML Version 5.72.10 Release               |\n;;; +----------------------------------------------------------------+\n;;; |                                                                |\n;;; |        _                                                       |\n;;; |    \\\\|| /                            11180 Reed Hartman Hwy    |\n;;; |     \\||/                             Cincinnati, Ohio 45242    |\n;;; |     /||\\                             Phone: (513) 985 - 9877   |\n;;; |    /_||\\\\ TechnoSoft Inc.            Fax:   (513) 985 - 0522   |\n;;; |                                                                |\n;;; +----------------------------------------------------------------+\n;;; Development Environment Version AML Version 5.72.10, 21-Jan-2013\n;;; Copyright (C) 1993 -- 2013 by TechnoSoft Inc.\n;;; All Rights Reserved\n;;;\n;;; This software product contains confidential and trade secret information\n;;; belonging to TechnoSoft Inc.  It may not be copied for any reason other than\n;;; for archival and backup purposes.\n;;;\n;;; TechnoSoft and Adaptive Modeling Language are trademarks of TechnoSoft Inc.\n\nLoading C:\\Technosoft\\AML\\AML-Training\\AML\\AML5_Win32\\lib\\amlXMLParser.dll ... done\nLoading C:\\Technosoft\\AML\\AML-Training\\AML\\AML5_Win32\\lib\\AmlZip.dll ... done\nLoading C:\\Technosoft\\AML\\AML-Training\\AML\\AML5_Win32\\lib\\ipc.dll ... done\nLoading C:\\Technosoft\\AML\\AML-Training\\AML\\AML5_Win32\\lib\\merge_files.dll ... done\nLoading C:\\Technosoft\\AML\\AML-Training\\AML\\AML5_Win32\\lib\\parse.dll ... done\nLoading C:\\Technosoft\\AML\\AML-Training\\AML\\AML5_Win32\\lib\\TS_VIL.dll ... done\nLoading patches ...\nLoading File : C:\\Technosoft\\AML\\AML-Training\\AML\\AML5_Win32\\patches\\bins\\0241-datagraph.btc ...... done\nLoading File : C:\\Technosoft\\AML\\AML-Training\\AML\\AML5_Win32\\patches\\bins\\0246-toggle-ui-menu-item.btc ...... done\nLoading File : C:\\Technosoft\\AML\\AML-Training\\AML\\AML5_Win32\\patches\\bins\\0247-get-geom-map.btc ...... done\nLoading File : C:\\Technosoft\\AML\\AML-Training\\AML\\AML5_Win32\\patches\\bins\\0248-ui-menu-item-class.btc ...... done\nLoading File : C:\\Technosoft\\AML\\AML-Training\\AML\\AML5_Win32\\patches\\bins\\0249-ui-toggle-property-menu-item-class.btc ...... done\nLoading File : C:\\Technosoft\\AML\\AML-Training\\AML\\AML5_Win32\\patches\\bins\\0250-ui-menu-item-class-callback-enhancement.btc ...... done\nLoading File : C:\\Technosoft\\AML\\AML-Training\\AML\\AML5_Win32\\patches\\bins\\0251-ui-menu-button-update.btc ...... done\nLoading File : C:\\Technosoft\\AML\\AML-Training\\AML\\AML5_Win32\\patches\\bins\\0252-points-align.btc ...... done\nLoading File : C:\\Technosoft\\AML\\AML-Training\\AML\\AML5_Win32\\patches\\bins\\0253-xml-node-get-label.btc ...... done\nLoading File : C:\\Technosoft\\AML\\AML-Training\\AML\\AML5_Win32\\patches\\bins\\0255-ui-multiple-object-selection-button-content.btc ...... done\nLoading File : C:\\Technosoft\\AML\\AML-Training\\AML\\AML5_Win32\\patches\\bins\\0256-ui-apply-action-method.btc ...... done\nLoading File : C:\\Technosoft\\AML\\AML-Training\\AML\\AML5_Win32\\patches\\bins\\0257-ui-typein-field-validate-input.btc ...... done\nLoading File : C:\\Technosoft\\AML\\AML-Training\\AML\\AML5_Win32\\patches\\bins\\0258-aml-xml-export.btc ...... done\nLoading File : C:\\Technosoft\\AML\\AML-Training\\AML\\AML5_Win32\\patches\\bins\\0259-tokenize-mltext-string.btc ...... done\nLoading File : C:\\Technosoft\\AML\\AML-Training\\AML\\AML5_Win32\\patches\\bins\\0260-tokenize-mltext-string.btc ...... done\nLoading File : C:\\Technosoft\\AML\\AML-Training\\AML\\AML5_Win32\\patches\\bins\\3187-geometry-exchange.btc ...... done\nLoading File : C:\\Technosoft\\AML\\AML-Training\\AML\\AML5_Win32\\patches\\bins\\3188-geometry-exchange.btc ...... done\nLoading File : C:\\Technosoft\\AML\\AML-Training\\AML\\AML5_Win32\\patches\\bins\\3190-geometry-exchange.btc ...... done\nLoading File : C:\\Technosoft\\AML\\AML-Training\\AML\\AML5_Win32\\patches\\bins\\3191-geometry-exchange.btc ...... done\nLoading File : C:\\Technosoft\\AML\\AML-Training\\AML\\AML5_Win32\\patches\\bins\\3192-geometry-exchange.btc ...... done\nLoading File : C:\\Technosoft\\AML\\AML-Training\\AML\\AML5_Win32\\patches\\bins\\3193-geometry-exchange.btc ...... done\nLoading File : C:\\Technosoft\\AML\\AML-Training\\AML\\AML5_Win32\\patches\\bins\\3194-geometry-exchange.btc ...... done\nLoading File : C:\\Technosoft\\AML\\AML-Training\\AML\\AML5_Win32\\patches\\bins\\3196-geometry-exchange.btc ...... done\nLoading File : C:\\Technosoft\\AML\\AML-Training\\AML\\AML5_Win32\\patches\\bins\\3197-geometry-exchange.btc ...... done\nLoading File : C:\\Technosoft\\AML\\AML-Training\\AML\\AML5_Win32\\patches\\bins\\3198-geometry-exchange.btc ...... done\nLoading File : C:\\Technosoft\\AML\\AML-Training\\AML\\AML5_Win32\\patches\\bins\\4101-model-save.btc ...... done\nLoading Patches ... done\nLoading module file: C:\\Technosoft\\AML\\AML-Training\\Modules\\ampublish-module-01-02\\ampublish-module.btc ......WARNING : Loading file (compiled in older AML version) : C:\\Technosoft\\AML\\AML-Training\\Modules\\ampublish-module-01-02\\ampublish-module.btc\ndone\nLoading module file: C:\\Technosoft\\AML\\AML-Training\\Modules\\aml-analysis-module-pack-type-2-01-64\\aml-analysis-module-pack-type-2.btc ......WARNING : Loading file (compiled in older AML version) : C:\\Technosoft\\AML\\AML-Training\\Modules\\aml-analysis-module-pack-type-2-01-64\\aml-analysis-module-pack-type-2.btc\nLoading C:\\Technosoft\\AML\\AML-Training\\Modules\\aml-analysis-module-pack-type-2-01-64\\lib\\windows\\OctreeLibrary.dll ... done\nLoading C:\\Technosoft\\AML\\AML-Training\\Modules\\aml-analysis-module-pack-type-2-01-64\\lib\\windows\\patran_meshdb_interface.dll ... done\nLoading C:\\Technosoft\\AML\\AML-Training\\Modules\\aml-analysis-module-pack-type-2-01-64\\lib\\windows\\amlMeshQualityLib.dll ... done\nLoading C:\\Technosoft\\AML\\AML-Training\\Modules\\aml-analysis-module-pack-type-2-01-64\\lib\\windows\\libStretching.dll ... done\nLoading C:\\Technosoft\\AML\\AML-Training\\Modules\\aml-analysis-module-pack-type-2-01-64\\lib\\windows\\BESweeper.dll ... done\nLoading C:\\Technosoft\\AML\\AML-Training\\Modules\\aml-analysis-module-pack-type-2-01-64\\lib\\windows\\libAMLPaver.dll ... done\ndone\nLoading module file: C:\\Technosoft\\AML\\AML-Training\\Modules\\amsketcher-module-03-46\\amsketcher-module.btc ......WARNING : Loading file (compiled in older AML version) : C:\\Technosoft\\AML\\AML-Training\\Modules\\amsketcher-module-03-46\\amsketcher-module.btc\nLoading C:\\Technosoft\\AML\\AML-Training\\Modules\\amsketcher-module-03-46\\lib\\windows\\c2aml.dll ... done\nLoading C:\\Technosoft\\AML\\AML-Training\\Modules\\amsketcher-module-03-46\\lib\\windows\\xlaut7.dll ... done\ndone\nnil\n> (45 3 92 4 87 2 5)\n> nil\n> #<fun: spam  @0x11CE10AC>\n> nil\n> \"Simen\"\n\"Simen\"\n> nil\n> #<fun: teodor  @0x11CE10D0>\n(spam)\n> \"eggs\"\n\"eggs\"\n> \"Simen\"\n\"Simen\"\n(teodor 4)\n> 6\n\n> \nRunning: AML Version 5.72\n",
+					"settings":
+					{
+						"buffer_size": 6964,
+						"line_ending": "Windows",
+						"name": "AML REPL"
+					}
+				},
+				{
+					"file": "/C/Users/Simen/Documents/GitHub/ST--PW/Sublime Text 2.0.2 x64/Data/Packages/AMLRepl/AMLRepl.py",
+					"settings":
+					{
+						"buffer_size": 4567,
+						"line_ending": "Windows"
+					}
+				}
 			],
 			"build_system": "",
 			"command_palette":
 			{
-				"height": 380.0,
+				"height": 382.0,
 				"selected_items":
 				[
+					[
+						"",
+						"AMLRepl: Eval file"
+					],
 					[
 						"pack",
 						"Package Control: Install Package"
@@ -197,10 +227,6 @@
 					[
 						"remo",
 						"Package Control: Remove Package"
-					],
-					[
-						"",
-						"AMLRepl: AML Gui"
 					],
 					[
 						"shell",
@@ -266,16 +292,103 @@
 				"whole_word": false,
 				"wrap": true
 			},
+			"folders":
+			[
+				{
+					"path": "/C/Users/Simen/Documents/GitHub/ST--PW/Sublime Text 2.0.2 x64/Data/Packages"
+				}
+			],
 			"groups":
 			[
 				{
+					"selected": 0,
 					"sheets":
 					[
+						{
+							"buffer": 0,
+							"file": "/C/Users/Simen/Documents/GitHub/ST--PW/Sublime Text 2.0.2 x64/Data/Packages/AMLRepl/demo.lisp",
+							"settings":
+							{
+								"buffer_size": 108,
+								"regions":
+								{
+								},
+								"selection":
+								[
+									[
+										108,
+										108
+									]
+								],
+								"settings":
+								{
+									"syntax": "Packages/AMLRepl/Lisp.tmLanguage"
+								},
+								"translation.x": 0.0,
+								"translation.y": 108.0,
+								"zoom_level": 1.0
+							},
+							"type": "text"
+						}
 					]
 				},
 				{
+					"selected": 1,
 					"sheets":
 					[
+						{
+							"buffer": 1,
+							"settings":
+							{
+								"buffer_size": 6964,
+								"regions":
+								{
+								},
+								"selection":
+								[
+									[
+										6887,
+										6887
+									]
+								],
+								"settings":
+								{
+									"syntax": "Packages/AMLRepl/Lisp.tmLanguage"
+								},
+								"translation.x": 0.0,
+								"translation.y": 1356.0,
+								"zoom_level": 1.0
+							},
+							"type": "text"
+						},
+						{
+							"buffer": 2,
+							"file": "/C/Users/Simen/Documents/GitHub/ST--PW/Sublime Text 2.0.2 x64/Data/Packages/AMLRepl/AMLRepl.py",
+							"settings":
+							{
+								"buffer_size": 4567,
+								"regions":
+								{
+								},
+								"selection":
+								[
+									[
+										565,
+										565
+									]
+								],
+								"settings":
+								{
+									"syntax": "Packages/Python/Python.tmLanguage",
+									"tab_size": 4,
+									"translate_tabs_to_spaces": true
+								},
+								"translation.x": 0.0,
+								"translation.y": 162.0,
+								"zoom_level": 1.0
+							},
+							"type": "text"
+						}
 					]
 				}
 			],
@@ -317,7 +430,7 @@
 				]
 			},
 			"menu_visible": true,
-			"position": "0,2,3,-1,-1,-1,-1,643,104,104,760",
+			"position": "0,2,3,-1,-1,-1,-1,591,52,52,708",
 			"replace":
 			{
 				"height": 0.0
@@ -345,7 +458,7 @@
 			"side_bar_visible": true,
 			"side_bar_width": 150.0,
 			"status_bar_visible": true,
-			"window_id": 1,
+			"window_id": 3,
 			"workspace_name": ""
 		}
 	],
