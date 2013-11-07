@@ -1,0 +1,15 @@
+<snippet>
+	<content><![CDATA[
+(define-class ${1:name}-class
+  :inherit-from(${2:object})
+  :properties(
+	      (${3:property})
+	      )
+  :subobjects(
+	      (${4:subobject})
+	      )
+  )
+]]></content>
+	<tabTrigger>defc</tabTrigger>
+    <scope>source.aml</scope>
+</snippet>

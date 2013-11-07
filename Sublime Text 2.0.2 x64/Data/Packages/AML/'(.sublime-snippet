@@ -1,0 +1,6 @@
+<snippet>
+    <content><![CDATA['(]]></content>
+    <tabTrigger>(</tabTrigger>
+    <scope>source.aml</scope>
+    <description>'(</description>
+</snippet>
