@@ -1,0 +1,7 @@
+<snippet>
+	<content><![CDATA[
+(apropos '${1:name})
+]]></content>
+	<tabTrigger>apro</tabTrigger>
+	<scope>source.aml</scope>
+</snippet>
