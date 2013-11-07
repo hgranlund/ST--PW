@@ -1,0 +1,9 @@
+[
+    { "caption": "AMLRepl: Eval file", "command": "file_eval" },
+    { "caption": "AMLRepl: Eval S-expression", "command": "repl_eval" },
+    { "caption": "AMLRepl: Force output", "command": "output_lines" },
+    { "caption": "AMLRepl: Reference manual", "command": "aml_reference_manual" },
+    { "caption": "AMLRepl: Start", "command": "aml_repl" },
+    { "caption": "AMLRepl: AML Gui", "command": "aml_gui" },
+    { "caption": "AMLRepl: Quit", "command": "repl_quit" }
+]

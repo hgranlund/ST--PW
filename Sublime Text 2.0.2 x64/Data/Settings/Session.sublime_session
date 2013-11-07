@@ -2,12 +2,11 @@
 	"folder_history":
 	[
 	],
-	"last_window_id": 1,
+	"last_window_id": 2,
 	"settings":
 	{
-	},
-	"windows":
-	[
+		"new_window_height": 480.0,
+		"new_window_settings":
 		{
 			"auto_complete":
 			{
@@ -15,48 +14,27 @@
 				[
 				]
 			},
-			"buffers":
-			[
-				{
-					"contents": "",
-					"settings":
-					{
-						"buffer_size": 0,
-						"line_ending": "Windows"
-					}
-				},
-				{
-					"contents": "Microsoft Windows [Version 6.2.9200]\n(c) 2012 Microsoft Corporation. All rights reserved.\n\nC:\\Users\\Simen\\Downloads\\Sublime Text 2.0.2 x64>cd c:/\n\nc:\\>cd Technosoft\n\nc:\\TechnoSoft>cd AML\\\n\nc:\\TechnoSoft\\AML>dir\n Volume in drive C has no label.\n Volume Serial Number is 901C-AD76\n\n Directory of c:\\TechnoSoft\\AML\n\n09/24/2013  12:15 PM    <DIR>          .\n09/24/2013  12:15 PM    <DIR>          ..\n10/09/2013  11:15 AM    <DIR>          AML-Training\n               0 File(s)              0 bytes\n               3 Dir(s)  22,269,382,656 bytes free\n\nc:\\TechnoSoft\\AML>cd AML-Training\n\nc:\\TechnoSoft\\AML\\AML-Training>cd AML-startups\n\nc:\\TechnoSoft\\AML\\AML-Training\\AML-Startups>ls\n'ls' is not recognized as an internal or external command,\noperable program or batch file.\n\nc:\\TechnoSoft\\AML\\AML-Training\\AML-Startups>dir\n Volume in drive C has no label.\n Volume Serial Number is 901C-AD76\n\n Directory of c:\\TechnoSoft\\AML\\AML-Training\\AML-Startups\n\n09/24/2013  12:17 PM    <DIR>          .\n09/24/2013  12:17 PM    <DIR>          ..\n09/24/2013  12:17 PM    <DIR>          AML-Startup-Win32\n               0 File(s)              0 bytes\n               3 Dir(s)  22,269,382,656 bytes free\n\nc:\\TechnoSoft\\AML\\AML-Training\\AML-Startups>dir\n Volume in drive C has no label.\n Volume Serial Number is 901C-AD76\n\n Directory of c:\\TechnoSoft\\AML\\AML-Training\\AML-Startups\n\n09/24/2013  12:17 PM    <DIR>          .\n09/24/2013  12:17 PM    <DIR>          ..\n09/24/2013  12:17 PM    <DIR>          AML-Startup-Win32\n               0 File(s)              0 bytes\n               3 Dir(s)  22,269,382,656 bytes free\n\nc:\\TechnoSoft\\AML\\AML-Training\\AML-Startups>cd ..	\n\nc:\\TechnoSoft\\AML\\AML-Training>dir\n Volume in drive C has no label.\n Volume Serial Number is 901C-AD76\n\n Directory of c:\\TechnoSoft\\AML\\AML-Training\n\n10/09/2013  11:15 AM    <DIR>          .\n10/09/2013  11:15 AM    <DIR>          ..\n09/24/2013  12:15 PM    <DIR>          AML\n09/24/2013  12:17 PM    <DIR>          AML-Startups\n10/09/2013  01:23 PM               268 AML5-startup-Win32.bat\n09/24/2013  12:15 PM               314 AML5-startup-xemacs-Win32.bat\n09/24/2013  12:17 PM    <DIR>          Modules\n09/24/2013  12:17 PM    <DIR>          Training\n               2 File(s)            582 bytes\n               6 Dir(s)  22,269,382,656 bytes free\n\nc:\\TechnoSoft\\AML\\AML-Training>AML5-startup-Win32.bat --noreadline\n\nc:\\TechnoSoft\\AML\\AML-Training>ECHO OFF \nChecking out license AML_FEATURE_1_1_1_0 \nFailed to check out license: Licensed number of users already reached.\nFeature:       AML_FEATURE_1_1_1_0\nLicense path:  27000@localhost;\nFLEXnet Licensing error:-4,132\nFor further information, refer to the FLEXnet Licensing documentation,\navailable at \"www.flexerasoftware.com\".\n\"simen\"\nc:\\TechnoSoft\\AML\\AML-Training>AML5-startup-Win32.bat --noreadline\n\nc:\\TechnoSoft\\AML\\AML-Training>ECHO OFF \nChecking out license AML_FEATURE_1_1_1_0 \n;;; +----------------------------------------------------------------+\n;;; |                  ADAPTIVE MODELING LANGUAGE                    |\n;;; |                      AML Version 5.72.10 Release               |\n;;; +----------------------------------------------------------------+\n;;; |                                                                |\n;;; |        _                                                       |\n;;; |    \\\\|| /                            11180 Reed Hartman Hwy    |\n;;; |     \\||/                             Cincinnati, Ohio 45242    |\n;;; |     /||\\                             Phone: (513) 985 - 9877   |\n;;; |    /_||\\\\ TechnoSoft Inc.            Fax:   (513) 985 - 0522   |\n;;; |                                                                |\n;;; +----------------------------------------------------------------+\n;;; Development Environment Version AML Version 5.72.10, 21-Jan-2013\n;;; Copyright (C) 1993 -- 2013 by TechnoSoft Inc.\n;;; All Rights Reserved\n;;;\n;;; This software product contains confidential and trade secret information\n;;; belonging to TechnoSoft Inc.  It may not be copied for any reason other than\n;;; for archival and backup purposes.\n;;;\n;;; TechnoSoft and Adaptive Modeling Language are trademarks of TechnoSoft Inc.\n\nLoading c:\\TechnoSoft\\AML\\AML-Training\\AML\\AML5_Win32\\lib\\amlXMLParser.dll ... done\nLoading c:\\TechnoSoft\\AML\\AML-Training\\AML\\AML5_Win32\\lib\\AmlZip.dll ... done\nLoading c:\\TechnoSoft\\AML\\AML-Training\\AML\\AML5_Win32\\lib\\ipc.dll ... done\nLoading c:\\TechnoSoft\\AML\\AML-Training\\AML\\AML5_Win32\\lib\\merge_files.dll ... done\nLoading c:\\TechnoSoft\\AML\\AML-Training\\AML\\AML5_Win32\\lib\\parse.dll ... done\nLoading c:\\TechnoSoft\\AML\\AML-Training\\AML\\AML5_Win32\\lib\\TS_VIL.dll ... Qt: Untested Windows version 6.2 detected!\ndone\nLoading patches ...\nLoading File : c:\\TechnoSoft\\AML\\AML-Training\\AML\\AML5_Win32\\patches\\bins\\0241-datagraph.btc ...... done\nLoading File : c:\\TechnoSoft\\AML\\AML-Training\\AML\\AML5_Win32\\patches\\bins\\0246-toggle-ui-menu-item.btc ...... done\nLoading File : c:\\TechnoSoft\\AML\\AML-Training\\AML\\AML5_Win32\\patches\\bins\\0247-get-geom-map.btc ...... done\nLoading File : c:\\TechnoSoft\\AML\\AML-Training\\AML\\AML5_Win32\\patches\\bins\\0248-ui-menu-item-class.btc ...... done\nLoading File : c:\\TechnoSoft\\AML\\AML-Training\\AML\\AML5_Win32\\patches\\bins\\0249-ui-toggle-property-menu-item-class.btc ...... done\nLoading File : c:\\TechnoSoft\\AML\\AML-Training\\AML\\AML5_Win32\\patches\\bins\\0250-ui-menu-item-class-callback-enhancement.btc ...... done\nLoading File : c:\\TechnoSoft\\AML\\AML-Training\\AML\\AML5_Win32\\patches\\bins\\0251-ui-menu-button-update.btc ...... done\nLoading File : c:\\TechnoSoft\\AML\\AML-Training\\AML\\AML5_Win32\\patches\\bins\\0252-points-align.btc ...... done\nLoading File : c:\\TechnoSoft\\AML\\AML-Training\\AML\\AML5_Win32\\patches\\bins\\0253-xml-node-get-label.btc ...... done\nLoading File : c:\\TechnoSoft\\AML\\AML-Training\\AML\\AML5_Win32\\patches\\bins\\0255-ui-multiple-object-selection-button-content.btc ...... done\nLoading File : c:\\TechnoSoft\\AML\\AML-Training\\AML\\AML5_Win32\\patches\\bins\\0256-ui-apply-action-method.btc ...... done\nLoading File : c:\\TechnoSoft\\AML\\AML-Training\\AML\\AML5_Win32\\patches\\bins\\0257-ui-typein-field-validate-input.btc ...... done\nLoading File : c:\\TechnoSoft\\AML\\AML-Training\\AML\\AML5_Win32\\patches\\bins\\0258-aml-xml-export.btc ...... done\nLoading File : c:\\TechnoSoft\\AML\\AML-Training\\AML\\AML5_Win32\\patches\\bins\\0259-tokenize-mltext-string.btc ...... done\nLoading File : c:\\TechnoSoft\\AML\\AML-Training\\AML\\AML5_Win32\\patches\\bins\\0260-tokenize-mltext-string.btc ...... done\nLoading File : c:\\TechnoSoft\\AML\\AML-Training\\AML\\AML5_Win32\\patches\\bins\\3187-geometry-exchange.btc ...... done\nLoading File : c:\\TechnoSoft\\AML\\AML-Training\\AML\\AML5_Win32\\patches\\bins\\3188-geometry-exchange.btc ...... done\nLoading File : c:\\TechnoSoft\\AML\\AML-Training\\AML\\AML5_Win32\\patches\\bins\\3190-geometry-exchange.btc ...... done\nLoading File : c:\\TechnoSoft\\AML\\AML-Training\\AML\\AML5_Win32\\patches\\bins\\3191-geometry-exchange.btc ...... done\nLoading File : c:\\TechnoSoft\\AML\\AML-Training\\AML\\AML5_Win32\\patches\\bins\\3192-geometry-exchange.btc ...... done\nLoading File : c:\\TechnoSoft\\AML\\AML-Training\\AML\\AML5_Win32\\patches\\bins\\3193-geometry-exchange.btc ...... done\nLoading File : c:\\TechnoSoft\\AML\\AML-Training\\AML\\AML5_Win32\\patches\\bins\\3194-geometry-exchange.btc ...... done\nLoading File : c:\\TechnoSoft\\AML\\AML-Training\\AML\\AML5_Win32\\patches\\bins\\3196-geometry-exchange.btc ...... done\nLoading File : c:\\TechnoSoft\\AML\\AML-Training\\AML\\AML5_Win32\\patches\\bins\\3197-geometry-exchange.btc ...... done\nLoading File : c:\\TechnoSoft\\AML\\AML-Training\\AML\\AML5_Win32\\patches\\bins\\3198-geometry-exchange.btc ...... done\nLoading File : c:\\TechnoSoft\\AML\\AML-Training\\AML\\AML5_Win32\\patches\\bins\\4101-model-save.btc ...... done\nLoading Patches ... done\nLoading module file: c:\\TechnoSoft\\AML\\AML-Training\\Modules\\ampublish-module-01-02\\ampublish-module.btc ......WARNING : Loading file (compiled in older AML version) : c:\\TechnoSoft\\AML\\AML-Training\\Modules\\ampublish-module-01-02\\ampublish-module.btc\ndone\nLoading module file: c:\\TechnoSoft\\AML\\AML-Training\\Modules\\aml-analysis-module-pack-type-2-01-64\\aml-analysis-module-pack-type-2.btc ......WARNING : Loading file (compiled in older AML version) : c:\\TechnoSoft\\AML\\AML-Training\\Modules\\aml-analysis-module-pack-type-2-01-64\\aml-analysis-module-pack-type-2.btc\nLoading c:\\TechnoSoft\\AML\\AML-Training\\Modules\\aml-analysis-module-pack-type-2-01-64\\lib\\windows\\OctreeLibrary.dll ... done\nChecking out license AML_FEATURE_13_1_0_0 \nLoading c:\\TechnoSoft\\AML\\AML-Training\\Modules\\aml-analysis-module-pack-type-2-01-64\\lib\\windows\\patran_meshdb_interface.dll ... done\nLoading c:\\TechnoSoft\\AML\\AML-Training\\Modules\\aml-analysis-module-pack-type-2-01-64\\lib\\windows\\amlMeshQualityLib.dll ... done\nLoading c:\\TechnoSoft\\AML\\AML-Training\\Modules\\aml-analysis-module-pack-type-2-01-64\\lib\\windows\\libStretching.dll ... done\nLoading c:\\TechnoSoft\\AML\\AML-Training\\Modules\\aml-analysis-module-pack-type-2-01-64\\lib\\windows\\BESweeper.dll ... done\nChecking out license AML_FEATURE_62_1_0_0 \nLoading c:\\TechnoSoft\\AML\\AML-Training\\Modules\\aml-analysis-module-pack-type-2-01-64\\lib\\windows\\libAMLPaver.dll ... done\ndone\nLoading module file: c:\\TechnoSoft\\AML\\AML-Training\\Modules\\amsketcher-module-03-46\\amsketcher-module.btc ......Checking out license AML_FEATURE_29_1_0_0 \nWARNING : Loading file (compiled in older AML version) : c:\\TechnoSoft\\AML\\AML-Training\\Modules\\amsketcher-module-03-46\\amsketcher-module.btc\nLoading c:\\TechnoSoft\\AML\\AML-Training\\Modules\\amsketcher-module-03-46\\lib\\windows\\c2aml.dll ... done\nChecking out license AML_FEATURE_12_1_0_0 \nLoading c:\\TechnoSoft\\AML\\AML-Training\\Modules\\amsketcher-module-03-46\\lib\\windows\\xlaut7.dll ... done\ndone\nnil\nLost license, cannot re-connect: Licensed number of users already reached.\nFeature:       AML_FEATURE_12_1_0_0\nLicense path:  27000@localhost;\nFLEXnet Licensing error:-4,23\nFor further information, refer to the FLEXnet Licensing documentation,\navailable at \"www.flexerasoftware.com\".\n'stdin' is not recognized as an internal or external command,\noperable program or batch file.\n\"simen\"\nc:\\TechnoSoft\\AML\\AML-Training>(+ 2 2)\n'+' is not recognized as an internal or external command,\noperable program or batch file.\n\nc:\\TechnoSoft\\AML\\AML-Training>(+ f f f ff )\n'+' is not recognized as an internal or external command,\noperable program or batch file.\n\nc:\\TechnoSoft\\AML\\AML-Training>\nc:\\TechnoSoft\\AML\\AML-Training>\nc:\\TechnoSoft\\AML\\AML-Training>\nc:\\TechnoSoft\\AML\\AML-Training>\nc:\\TechnoSoft\\AML\\AML-Training>\nc:\\TechnoSoft\\AML\\AML-Training>\nc:\\TechnoSoft\\AML\\AML-Training>\nc:\\TechnoSoft\\AML\\AML-Training>\nc:\\TechnoSoft\\AML\\AML-Training>\nc:\\TechnoSoft\\AML\\AML-Training>\nc:\\TechnoSoft\\AML\\AML-Training>\nc:\\TechnoSoft\\AML\\AML-Training>\nc:\\TechnoSoft\\AML\\AML-Training>hkhj\n'hkhj' is not recognized as an internal or external command,\noperable program or batch file.\n\nc:\\TechnoSoft\\AML\\AML-Training>",
-					"settings":
-					{
-						"buffer_size": 10903,
-						"line_ending": "Windows",
-						"name": "*REPL* [shell]",
-						"scratch": true
-					}
-				},
-				{
-					"file": "/C/TechnoSoft/AML/AML-Training/AML5-startup-Win32.bat",
-					"settings":
-					{
-						"buffer_size": 255,
-						"line_ending": "Windows"
-					}
-				}
-			],
 			"build_system": "",
 			"command_palette":
 			{
-				"height": 58.0,
+				"height": 380.0,
 				"selected_items":
 				[
 					[
-						"instal",
+						"pack",
 						"Package Control: Install Package"
 					],
 					[
-						"remove",
+						"rem",
 						"Package Control: Remove Package"
+					],
+					[
+						"remo",
+						"Package Control: Remove Package"
+					],
+					[
+						"",
+						"AMLRepl: AML Gui"
 					],
 					[
 						"shell",
@@ -88,6 +66,175 @@
 			},
 			"file_history":
 			[
+				"/C/Users/Simen/Documents/GitHub/ST--PW/Sublime Text 2.0.2 x64/Data/Packages/User/go2function.sublime-settings",
+				"/C/Users/Simen/Documents/GitHub/ST--PW/Sublime Text 2.0.2 x64/Data/Packages/Find Function Definition/go2function.sublime-settings",
+				"/C/TechnoSoft/AML/AML-Training/AML5-startup-Win32.bat"
+			],
+			"find":
+			{
+				"height": 0.0
+			},
+			"find_in_files":
+			{
+				"height": 0.0,
+				"where_history":
+				[
+				]
+			},
+			"find_state":
+			{
+				"case_sensitive": false,
+				"find_history":
+				[
+				],
+				"highlight": true,
+				"in_selection": false,
+				"preserve_case": false,
+				"regex": false,
+				"replace_history":
+				[
+				],
+				"reverse": false,
+				"show_context": true,
+				"use_buffer2": true,
+				"whole_word": false,
+				"wrap": true
+			},
+			"incremental_find":
+			{
+				"height": 0.0
+			},
+			"input":
+			{
+				"height": 0.0
+			},
+			"layout":
+			{
+				"cells":
+				[
+					[
+						0,
+						0,
+						1,
+						1
+					],
+					[
+						0,
+						1,
+						1,
+						2
+					]
+				],
+				"cols":
+				[
+					0.0,
+					1.0
+				],
+				"rows":
+				[
+					0.0,
+					0.5,
+					1.0
+				]
+			},
+			"menu_visible": true,
+			"replace":
+			{
+				"height": 0.0
+			},
+			"save_all_on_build": true,
+			"select_file":
+			{
+				"height": 0.0,
+				"selected_items":
+				[
+				],
+				"width": 0.0
+			},
+			"select_project":
+			{
+				"height": 0.0,
+				"selected_items":
+				[
+				],
+				"width": 0.0
+			},
+			"show_minimap": true,
+			"show_open_files": false,
+			"show_tabs": true,
+			"side_bar_visible": true,
+			"side_bar_width": 150.0,
+			"status_bar_visible": true
+		},
+		"new_window_width": 640.0
+	},
+	"windows":
+	[
+		{
+			"auto_complete":
+			{
+				"selected_items":
+				[
+				]
+			},
+			"buffers":
+			[
+			],
+			"build_system": "",
+			"command_palette":
+			{
+				"height": 380.0,
+				"selected_items":
+				[
+					[
+						"pack",
+						"Package Control: Install Package"
+					],
+					[
+						"rem",
+						"Package Control: Remove Package"
+					],
+					[
+						"remo",
+						"Package Control: Remove Package"
+					],
+					[
+						"",
+						"AMLRepl: AML Gui"
+					],
+					[
+						"shell",
+						"SublimeREPL: Shell"
+					],
+					[
+						"SHELL",
+						"SublimeREPL: Shell"
+					],
+					[
+						"INSTALL",
+						"Package Control: Install Package"
+					]
+				],
+				"width": 400.0
+			},
+			"console":
+			{
+				"height": 596.0
+			},
+			"distraction_free":
+			{
+				"menu_visible": true,
+				"show_minimap": false,
+				"show_open_files": false,
+				"show_tabs": false,
+				"side_bar_visible": false,
+				"status_bar_visible": false
+			},
+			"file_history":
+			[
+				"/C/Users/Simen/Documents/GitHub/ST--PW/Sublime Text 2.0.2 x64/Data/Packages/User/go2function.sublime-settings",
+				"/C/Users/Simen/Documents/GitHub/ST--PW/Sublime Text 2.0.2 x64/Data/Packages/Find Function Definition/go2function.sublime-settings",
+				"/C/TechnoSoft/AML/AML-Training/AML5-startup-Win32.bat"
 			],
 			"find":
 			{
@@ -122,135 +269,13 @@
 			"groups":
 			[
 				{
-					"selected": 2,
 					"sheets":
 					[
-						{
-							"buffer": 0,
-							"settings":
-							{
-								"buffer_size": 0,
-								"regions":
-								{
-								},
-								"selection":
-								[
-									[
-										0,
-										0
-									]
-								],
-								"settings":
-								{
-									"auto_name": "",
-									"syntax": "Packages/Text/Plain text.tmLanguage"
-								},
-								"translation.x": 0.0,
-								"translation.y": 0.0,
-								"zoom_level": 1.0
-							},
-							"type": "text"
-						},
-						{
-							"buffer": 1,
-							"settings":
-							{
-								"buffer_size": 10903,
-								"regions":
-								{
-								},
-								"selection":
-								[
-									[
-										10903,
-										10903
-									]
-								],
-								"settings":
-								{
-									"auto_complete": true,
-									"auto_indent": false,
-									"detect_indentation": false,
-									"gutter": false,
-									"history_arrows": true,
-									"indent_subsequent_lines": false,
-									"line_numbers": false,
-									"repl": true,
-									"repl_external_id": "shell",
-									"repl_id": "4acaea7e75b54183bbe2c1269f0304cd",
-									"repl_restart_args":
-									{
-										"cmd":
-										{
-											"linux":
-											[
-												"bash",
-												"-i"
-											],
-											"osx":
-											[
-												"bash",
-												"-i"
-											],
-											"windows":
-											[
-												"cmd.exe"
-											]
-										},
-										"cmd_postfix": "\n",
-										"cwd": "$file_path",
-										"encoding":
-										{
-											"linux": "utf-8",
-											"osx": "utf-8",
-											"windows": "$win_cmd_encoding"
-										},
-										"env":
-										{
-										},
-										"external_id": "shell",
-										"suppress_echo": true,
-										"syntax": "Packages/Text/Plain text.tmLanguage",
-										"type": "subprocess"
-									},
-									"repl_sublime2": true,
-									"smart_indent": false,
-									"spell_check": false,
-									"syntax": "Packages/Text/Plain text.tmLanguage",
-									"translate_tabs_to_spaces": false
-								},
-								"translation.x": 0.0,
-								"translation.y": 2596.0,
-								"zoom_level": 1.0
-							},
-							"type": "text"
-						},
-						{
-							"buffer": 2,
-							"file": "/C/TechnoSoft/AML/AML-Training/AML5-startup-Win32.bat",
-							"settings":
-							{
-								"buffer_size": 255,
-								"regions":
-								{
-								},
-								"selection":
-								[
-									[
-										255,
-										255
-									]
-								],
-								"settings":
-								{
-									"syntax": "Packages/Batch File/Batch File.tmLanguage"
-								},
-								"translation.x": 0.0,
-								"translation.y": 0.0,
-								"zoom_level": 1.0
-							},
-							"type": "text"
-						}
+					]
+				},
+				{
+					"sheets":
+					[
 					]
 				}
 			],
@@ -271,6 +296,12 @@
 						0,
 						1,
 						1
+					],
+					[
+						0,
+						1,
+						1,
+						2
 					]
 				],
 				"cols":
@@ -281,6 +312,7 @@
 				"rows":
 				[
 					0.0,
+					0.5,
 					1.0
 				]
 			},
