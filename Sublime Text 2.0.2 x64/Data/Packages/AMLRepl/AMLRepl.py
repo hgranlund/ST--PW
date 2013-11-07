@@ -24,7 +24,7 @@ class AmlReplCommand(sublime_plugin.TextCommand):
         self.view.set_syntax_file("Packages/AMLRepl/Lisp.tmLanguage")
 
         global repl_process
-        repl_process = subprocess.Popen(['startAML'], shell=True, stdin=subprocess.PIPE, stdout=subprocess.PIPE)
+        repl_process = subprocess.Popen(['runAML'], shell=True, stdin=subprocess.PIPE, stdout=subprocess.PIPE)
 
         global output_view
         output_view = self.view
