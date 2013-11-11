@@ -6,6 +6,14 @@ import time
 import webbrowser
 from threading import Thread
 
+# This path must point to the folder containing the AML reference manual. Use UNIX-style slashes.
+aml_manual_path = "C:/Technosoft/AML/AML-Training/AML/AML5_Win32/documentation/reference-manual-html/"
+# This path must point to the batch file for starting AML as a terminal process
+aml_start_path = "C:\Technosoft\AML\AML-Training"
+# This must correspond to the batch file for starting AML
+aml_batch_file = "AML5-startup-Win32.bat"
+
+
 repl_process = None
 output_lines = []
 output_view = None
@@ -21,10 +29,10 @@ class AmlReplCommand(sublime_plugin.TextCommand):
 
     def run(self, edit):
         self.view.set_name("AML REPL")
-        self.view.set_syntax_file("Packages/AMLRepl/Lisp.tmLanguage")
+        self.view.set_syntax_file("Packages/AML/Aml.tmLanguage")
 
-        global repl_process
-        repl_process = subprocess.Popen(['runAML'], shell=True, stdin=subprocess.PIPE, stdout=subprocess.PIPE)
+        global repl_process, aml_start_path, aml_batch_file
+        repl_process = subprocess.Popen(aml_batch_file, shell=True, stdin=subprocess.PIPE, stdout=subprocess.PIPE, cwd=aml_start_path)
 
         global output_view
         output_view = self.view
@@ -135,7 +143,9 @@ class OutputLinesCommand(sublime_plugin.TextCommand):
 
 class AmlReferenceManualCommand(sublime_plugin.TextCommand):
     def run(self, edit):
-        url = "file:///C:/Technosoft/AML/AML-Training/AML/AML5_Win32/documentation/reference-manual-html/index.html"
+        global aml_manual_path
+        
+        url = "file:///" + aml_manual_path + "index.html"
         webbrowser.open_new(url)
 
 class AmlGuiCommand(sublime_plugin.TextCommand):
