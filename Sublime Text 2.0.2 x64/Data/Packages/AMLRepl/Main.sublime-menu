@@ -1,59 +1,38 @@
-[
-    {
-        "id": "tools",
+[{
+    "id": "tools",
+    "children":
+    [{
+        "caption": "AMLRepl",
+        "mnemonic": "r",
+        "id": "AMLRepl",
+        "children":
+        [
+            { "caption": "Eval file", "command": "file_eval" },
+            { "caption": "Eval S-expression", "command": "repl_eval" },
+            { "caption": "Force output", "command": "output_lines" },
+            { "caption": "Reference manual", "command": "aml_reference_manual" },
+            { "caption": "Start", "command": "aml_repl" },
+            { "caption": "AML Gui", "command": "aml_gui" },
+            { "caption": "Quit", "command": "repl_quit" }
+        ]
+    }]
+},
+
+{
+    "id": "preferences",
+    "children":
+    [{
+        "caption": "Package Settings",
+        "id": "package-settings",
         "children":
         [{
             "caption": "AMLRepl",
-            "mnemonic": "r",
-            "id": "AMLRepl",
             "children":
-            [
-                { "caption": "Eval file", "command": "file_eval" },
-                { "caption": "Eval S-expression", "command": "repl_eval" },
-                { "caption": "Force output", "command": "output_lines" },
-                { "caption": "Reference manual", "command": "aml_reference_manual" },
-                { "caption": "Start", "command": "aml_repl" },
-                { "caption": "AML Gui", "command": "aml_gui" },
-                { "caption": "Quit", "command": "repl_quit" }
-            ]
+            [{
+                "command": "open_file",
+                "args": {"file": "${packages}/AMLRepl/AMLRepl.sublime-settings"},
+                "caption": "Settings"
+            }]
         }]
-    },
-
-    {
-        "caption": "Preferences",
-        "mnemonic": "n",
-        "id": "preferences",
-        "children":
-        [
-            {
-                "caption": "Package Settings",
-                "mnemonic": "P",
-                "id": "package-settings",
-                "children":
-                [
-                    {
-                        "caption": "AMLRepl",
-                        "children":
-                        [
-                            {
-                                "command": "open_file", "args":
-                                {
-                                    "file": "${packages}/AMLRepl/AMLRepl.sublime-settings"
-                                },
-                                "caption": "Settings – Default"
-                            },
-                            {
-                                "command": "open_file", "args":
-                                {
-                                    "file": "${packages}/User/AMLRepl.sublime-settings"
-                                },
-                                "caption": "Settings – User"
-                            },
-                            { "caption": "-" }
-                        ]
-                    }
-                ]
-            }
-        ]
-    }
-]
+    }]
+}]

@@ -1,0 +1,10 @@
+{
+  // This path must point to the folder containing the AML reference manual. Use UNIX-style slashes.
+  "aml_manual_path": "C:/Technosoft/AML/AML-Training/AML/AML5_Win32/documentation/reference-manual-html/",
+
+  // This path must point to the batch file for starting AML as a terminal process
+  "aml_start_path": "C:\\Technosoft\\AML\\AML-Training",
+
+  // This must correspond to the batch file for starting AML
+  "aml_batch_file": "AML5-startup-Win32.bat"
+}

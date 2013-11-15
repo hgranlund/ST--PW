@@ -6,13 +6,10 @@ import time
 import webbrowser
 from threading import Thread
 
-# This path must point to the folder containing the AML reference manual. Use UNIX-style slashes.
-aml_manual_path = "C:/Technosoft/AML/AML-Training/AML/AML5_Win32/documentation/reference-manual-html/"
-# This path must point to the batch file for starting AML as a terminal process
-aml_start_path = "C:\Technosoft\AML\AML-Training"
-# This must correspond to the batch file for starting AML
-aml_batch_file = "AML5-startup-Win32.bat"
 
+aml_manual_path = ""
+aml_start_path = ""
+aml_batch_file = ""
 
 repl_process = None
 output_lines = []
@@ -31,7 +28,13 @@ class AmlReplCommand(sublime_plugin.TextCommand):
         self.view.set_name("AML REPL")
         self.view.set_syntax_file("Packages/AML/Aml.tmLanguage")
 
-        global repl_process, aml_start_path, aml_batch_file
+        global aml_manual_path, aml_start_path, aml_batch_file
+        settings = sublime.load_settings("AMLRepl.sublime-settings")
+        aml_manual_path = settings.get("aml_manual_path")
+        aml_start_path = settings.get("aml_start_path")
+        aml_batch_file = settings.get("aml_batch_file")
+
+        global repl_process
         repl_process = subprocess.Popen(aml_batch_file, shell=True, stdin=subprocess.PIPE, stdout=subprocess.PIPE, cwd=aml_start_path)
 
         global output_view
@@ -74,12 +77,10 @@ class ReplQuitCommand(sublime_plugin.TextCommand):
 
 class ReplEvalCommand(sublime_plugin.TextCommand):
 
-    def last_s_expression(self, string):
-        expression, bracet_count,bracket_match  = "", 0, 0
+    def last_sexp(self, string):
+        sexp, bracet_count, bracket_match, done  = "", 0, 0, 0
 
         for c in reversed(string):
-            expression = c + expression
-
             if c == ')':
                 bracket_match += 1
                 bracet_count += 1
@@ -88,10 +89,19 @@ class ReplEvalCommand(sublime_plugin.TextCommand):
                 bracket_match -= 1
                 bracet_count += 1
 
-            if bracet_count > 1 and bracket_match == 0:
+            if done == 0 and bracet_count > 0 :
+                sexp = c + sexp
+            
+            elif done == 1 and c == '\'':
+                sexp = c + sexp
+            
+            elif done > 1:
                 break
 
-        return expression
+            if bracet_count > 1 and bracket_match == 0:
+                done += 1
+
+        return sexp
 
     def run(self, edit):
         global repl_process
@@ -101,7 +111,7 @@ class ReplEvalCommand(sublime_plugin.TextCommand):
             position = self.view.sel()[0]
 
             if position.begin() == position.end():
-                input_substr = self.last_s_expression(self.view.substr(sublime.Region(0, position.begin())))
+                input_substr = self.last_sexp(self.view.substr(sublime.Region(0, self.view.size())))
             else:
                 input_substr = self.view.substr(sublime.Region(position.begin(), position.end()))  
 

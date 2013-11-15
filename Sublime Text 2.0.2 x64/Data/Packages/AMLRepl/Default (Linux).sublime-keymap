@@ -1,35 +1,6 @@
 [
-        { "keys": ["up"], "command": "repl_view_previous",
-        "context":
-                [
-                        { "key": "setting.history_arrows", "operator": "equal", "operand": true },
-                        { "key": "setting.repl", "operator": "equal", "operand": true },
-                        { "key": "auto_complete_visible", "operator": "equal", "operand": false }
-                ]
-        },
-        { "keys": ["down"], "command": "repl_view_next",
-        "context":
-                [
-                        { "key": "setting.history_arrows", "operator": "equal", "operand": true },
-                        { "key": "setting.repl", "operator": "equal", "operand": true },
-                        { "key": "auto_complete_visible", "operator": "equal", "operand": false }
-                ]
-        },
-        { "keys": ["enter"], "command": "repl_enter", "args": {},
-        "context":
-                [
-                        { "key": "setting.repl", "operator": "equal", "operand": true },
-                        { "key": "auto_complete_visible", "operator": "equal", "operand": false }
-                ]
-        },
-        { "keys": ["enter"], "command": "repl_enter", "args": {},
-        "context":
-                [
-                        { "key": "setting.repl", "operator": "equal", "operand": true },
-                        { "key": "setting.auto_complete_commit_on_tab", "operand": true }
-                ]
-        },
         { "keys": ["ctrl+alt+x"], "command": "aml_repl" },
+        { "keys": ["ctrl+alt+g"], "command": "aml_gui" },
         { "keys": ["ctrl+alt+e"], "command": "file_eval" },
         { "keys": ["ctrl+alt+w"], "command": "output_lines" },
         { "keys": ["ctrl+alt+q"], "command": "repl_quit" },
