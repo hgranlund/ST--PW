@@ -1,0 +1,80 @@
+(in-package :aml)
+
+(defvar *pass-img* (system-bitmap :aunit-gui-system "v"))
+(defvar *fail-img* (system-bitmap :aunit-gui-system "x"))
+(defvar *grey-img* (system-bitmap :aunit-gui-system "grey"))
+
+(define-class aunit-gui-tree-class
+  :inherit-from (ui-model-tree)
+  :properties (
+	       root-object 'nil
+	       object-class 'aunit-display-class
+	       button1-action '(left-click !selected-item)
+	       button3-action '(execute-single-test
+				^superior
+				(the selected-item (:from ^^test-tree)))
+	       )
+  )
+
+(define-method save-tree-to-file aunit-gui-tree-class ()
+  (let ((def-file (if (equal (the def-file) "")
+		      (logical-path (directory-string (the content (:from !chosen-test-field))) "tests.def")
+		    !def-file)))
+    (format t "Writing tests to: ~a~%" def-file)
+    (with-open-file (file def-file :direction :output)
+      (loop for result in (reverse (tree-item-children !root-object))
+;(loop for test in !items-list
+        do
+	(format file "~a~%"
+		(file-namestring
+		 (the test-script-path
+		   (:from (find-test-from-result result)))))
+	(format t "~a~%"
+		(file-namestring
+		 (the test-script-path
+		   (:from (find-test-from-result result)))))))))
+
+(define-method clear-tree aunit-gui-tree-class ()
+  (delete-tree-items (the) (tree-item-children !root-object))
+  (reset-update-gui))
+
+(define-method prepare-tree aunit-gui-tree-class ()
+  (when (the test-fws (:error nil))
+    (delete-object (the superior results))
+    (delete-object (the superior test-fws)))        
+  (add-object (the superior) 'results 'aunit-display-class)
+  (add-object (the superior) 'test-fws 'aunit-display-class)
+  (change-value !root-object (the superior results)))
+
+(define-method set-all-images aunit-gui-tree-class (root img)
+  (update-tree-item (the) (the superior (:from root)) :image img)
+  (update-tree-item (the) root :image img)
+  (let ((children (tree-item-children root)))
+    (loop for child in children
+      if (tree-item-children child)
+      do (set-all-images (the) child img)
+      else
+      do (update-tree-item (the) child :image img))))
+
+(define-method set-test-result-image aunit-gui-tree-class (test)
+  (set-img (the) test (the result (:from test)))
+  (loop for child in (tree-item-children test)
+    if (typep child 'aunit-result-collection-class)
+    do (set-img (the) child (the result (:from child)))))
+
+(define-method update-root-img aunit-gui-tree-class (result)
+  (set-img (the) (the results) result))
+
+(define-method set-img aunit-gui-tree-class (node result)
+  (let ((img (if result
+		 *pass-img*
+	       *fail-img*)))
+    (update-tree-item (the) node :image img)))
+
+(defun left-click (selected-item)
+  (when (typep selected-item 'aunit-result-collection-class)
+    (evaluate-results-tree (the superior superior) selected-item)))
+
+(defun test-already-in-tree? (test-name tree-root-children)
+  (let ((name-list (map 'list 'object-name tree-root-children)))
+    (member test-name name-list)))

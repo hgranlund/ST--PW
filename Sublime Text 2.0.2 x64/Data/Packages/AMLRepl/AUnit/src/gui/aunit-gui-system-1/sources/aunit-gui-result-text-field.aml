@@ -1,0 +1,34 @@
+(in-package :aml)
+
+(define-class aunit-gui-result-text-field-class
+  :inherit-from (ui-field-class)
+  :properties (
+	       content ""
+	       input-rows 10
+	       )
+  )
+
+(define-method clear-results aunit-gui-result-text-field-class ()
+  (replace-text (the) ""))
+
+(define-method add-results aunit-gui-result-text-field-class (test)
+  ;; checking for test=nil, this happends because
+  ;; when two list-boxes are in use, both button-actions are fired.
+  (when (not (null test))
+    (insert-text (the)
+                 (format 'nil "~a : ~a~%~a ~a~%"
+                         (format 'nil "~a"
+                                 (the type-of-test (:from test)))
+                         (format 'nil "~a"
+                                 (the tested-object (:from test)))
+                         (if (numberp (the expected-value (:from test)))
+                             (format 'nil "Expected: ~f"
+                                     (the expected-value (:from test)))
+                           (format 'nil "Expected: ~a"
+                                   (the expected-value (:from test))))
+                         (if (numberp (the actual-value (:from test)))
+                             (format 'nil "Actual: ~f"
+                                     (the actual-value (:from test)))
+                           (format 'nil "Actual: ~a"
+                                   (the actual-value (:from test)))))
+                 -2)))

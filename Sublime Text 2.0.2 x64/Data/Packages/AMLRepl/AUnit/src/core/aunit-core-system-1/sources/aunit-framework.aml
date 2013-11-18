@@ -1,0 +1,371 @@
+(in-package :aml)
+
+;;;----------------------------------------------------
+;;; Class : aunit-framework-class
+;;; Inherit : object
+;;; Purpose : Holds the path to save logfiles and images
+;;; : from each test. Default is C:\Data.
+;;; : results-list holds a list of all the
+;;; : results.
+;;; Notes :
+;;; Author : Lars Barlindhaug
+(define-class aunit-framework-class
+  :inherit-from (object)
+  :properties (
+               test-script-path (default "C:\\Data\\test-script.aml")
+               folder-path (directory-string ^test-script-path)
+               expected-folder-path (default (logical-path ^folder-path "expected"))
+               reference-image-path (default (logical-path ^expected-folder-path "images"))
+               output-folder-path (default (logical-path ^folder-path "output"))
+               current-image-path (default (logical-path ^output-folder-path "images"))
+               name (drop-dot-extension (file-namestring ^test-script-path))
+               )
+  :subobjects (
+               (io :class 'aunit-file-io-class)
+               (test-definitions :class 'aunit-test-definitions-class)
+               )
+  )
+
+(defvar *current-test* (the model-manager))
+(defvar *expected-values* nil)
+(defvar *current-image-path* nil)
+(defvar *reference-image-path* nil)
+(defvar *name-generator* nil)
+
+;;;----------------------------------------------------
+;;; Method : clean
+;;; Purpose : removes all loaded tests, incomplete.
+;;; Arguments : -
+;;; Returns : -
+;;; Author : Lars Barlindhaug
+;;;
+(define-method clean aunit-framework-class ()
+  (when (member (read-from-string !name) (subobjects (the superior results)))
+    (delete-object (find-result-from-test (the)))
+    (add-result)))
+
+;;;----------------------------------------------------
+;;; Method : set-up
+;;; Purpose : set the folder paths and get the
+;;; : expected values
+;;; Arguments : -
+;;; Returns : -
+;;; Author : Lars Barlindhaug
+;;;
+(define-method set-up aunit-framework-class ()
+  (setf *expected-values* (load-expected-values (the io)))
+  (setf *expected-folder-path* (the expected-folder-path)) ;;used by check-image
+  (setf *output-folder-path* (the output-folder-path)) ;;used by check-image
+  (setf *name-generator* (add-object !self 'name-generator-object 'name-generator :init-form '(auto-naming? t)))
+  (add-result)
+  ;;Core dependency to print
+  (add-object (the) 'print 'aunit-print-class)
+  (the))
+
+;;;----------------------------------------------------
+;;; Function : delete-an-object
+;;; Purpose : Deletes an object from the tree,
+;;; : incomplete
+;;; Arguments : object-name (string)
+;;; : parent (aunit-result-*-class)
+;;; Returns : nil if the s-expression do not start
+;;; : with check-, t if it does.
+;;; Author : Lars Barlindhaug
+;;;
+(defun delete-an-object (object-name parent)
+  (let ((children (children parent))
+        (subobjects (subobjects parent))
+        (position (position object-name subobjects)))
+    (if position
+        (progn
+          (delete-object (nth position children))
+          (format t "Deleted: ~a from ~a ~%" object-name (object-name parent))))))
+
+(defun add-result ()
+  (delete-an-object (read-from-string !name) (the superior results))
+  (setf *current-test*
+	(add-object (the superior results)
+		    (read-from-string !name)
+		    'aunit-result-test-class
+		    :init-form '(
+				 result "result"
+				 test-name "test-title"
+				 successful-tests "successful-tests"
+				 total-tests "total-tests"
+				 tests nil
+				 setup-cmds nil))))
+
+;;;----------------------------------------------------
+;;; Macro : defmodtest
+;;; Purpose : Wraps around a model test.
+;;; : evaluates the s-expressions and combines
+;;; : the results for all check-* macros.
+;;; Arguments : test-title (string)
+;;; : class-instance ro set correct paths using check-image
+;;; : forms (s-expressions)
+;;; Returns : save-results return value
+;;; : List including test results,
+;;; : number of tests, successful tests and
+;;; : info from each test.
+;;; Author : Lars Barlindhaug
+;;; : based on combine-results by Peter Seibel,
+;;; : converted to AML by Geir Iversen
+;;;
+(defmacro defmodtest (test-title &key (class-instance 'nil) &rest forms)
+  `(let ((total (list)) (setup-cmds (list)) (temp-list (list)))
+     ,@(loop for f in forms
+         if (starts-with? "(check-" f)
+         collect `(push ,f total)
+         else
+         collect `(push ',f total)
+         collect f)
+(format 't "total ~a~%" total)
+(save-results ,test-title (reverse total) (reverse setup-cmds))))
+
+(defun is-set-up? (func)
+  (starts-with? "(deftest 'set-up" func))
+
+(defun is-tear-down? (func)
+  (starts-with? "(deftest 'tear-down" func))
+
+;;;----------------------------------------------------
+;;; Macro : defaunit
+;;; Purpose : Wraps around all unit tests.
+;;; : Goes through all deftest unit testing
+;;; : functions and runs the set-up method
+;;; : (if any) before each test, and the tear-down method afther each test.
+;;; Arguments : test-title (string)
+;;; : class-instance ro set correct paths using check-image
+;;; : forms (s-expressions)
+;;; Returns : save-results return value
+;;; : List including test results,
+;;; : number of tests, successful tests and
+;;; : info from each test.
+;;; Author : Geir Iversen
+;;; : based on defaunit by Lars Barlindhaug
+;;; : based on combine-results by Peter Seibel,
+;;; : converted to AML by Geir Iversen
+;;;
+(defmacro defaunit (test-title &key (class-instance 'nil) &rest forms)
+  (let ((total (loop for func in forms
+                 if (is-set-up? func) collect func into set-up
+		 else
+                 if (is-tear-down? func) collect func into tear-down
+		 else
+                 collect func into funcs
+                 finally (return (loop for f in funcs
+                                   append (list (first set-up) f (first tear-down)))))))
+    (save-overall-results
+     test-title
+     (loop for f in total
+       collect (eval f))
+     'nil)))
+
+
+;;;----------------------------------------------------
+;;; Macro : deftest
+;;; Purpose : Creates a unit test.
+;;; : Evaluates the s-expressions and combines
+;;; : the results for all check-* macros.
+;;; Arguments : test-title (string)
+;;; : class-instance ro set correct paths using check-image
+;;; : forms (s-expressions)
+;;; Returns : save-results return value
+;;; : List including test results,
+;;; : number of tests, successful tests and
+;;; : info from each test.
+;;; Author : Lars Barlindhaug
+;;; : based on combine-results by Peter Seibel,
+;;; : converted to AML by Geir Iversen
+;;;
+(defmacro deftest (test-title &key (class-instance 'nil) &rest forms)
+  `(let ((total (list)) (setup-cmds (list)) (temp-list (list)))
+     ,@(loop for f in forms
+         if (starts-with? "(check-" f)
+         collect `(push ,f total)
+         else
+         collect `(push ',f total)
+         collect f)
+;(format 't "total ~a~%" total)
+     (save-results (write-to-string ,test-title) (reverse total) (reverse setup-cmds))))
+
+;;;----------------------------------------------------
+;;; Function : starts-with?
+;;; Purpose : cheks if the s-expr. starts with the
+;;; : given string
+;;; Arguments : string (string)
+;;; : form (s-expression)
+;;; Returns : nil if the s-expression do not start
+;;; : with check-, t if it does.
+;;; Author : Lars Barlindhaug
+;;;
+(defun starts-with? (string form)
+  (let ((form-as-string (write-to-string form)) (string-length (length string)))
+    (when (> (length form-as-string) string-length)
+      (string= string form-as-string :end1 string-length :end2 string-length))))
+
+;;;----------------------------------------------------
+;;; Function : report-result
+;;; Purpose : write the result for a check-* macro
+;;; : to the log file.
+;;; Arguments : result (boolean),
+;;; : type-of-test (string),
+;;; : tested-object,
+;;; : actual-value,
+;;; : expected-value,
+;;; : test-name (string)
+;;; Returns : aunit-result-class
+;;; Author : Lars Barlindhaug
+;;;
+(defun report-result (result type-of-test tested-object actual-value expected-value &key test-name)
+  (add-object
+   *current-test*
+   (generate-name *name-generator* 'rep-result)
+   'aunit-result-class
+   :init-form `(
+		result ,result
+		type-of-test ,type-of-test
+		tested-object ',tested-object
+		actual-value ',actual-value
+		expected-value ',expected-value)))
+
+;;;----------------------------------------------------
+;;; Function : save-results
+;;; Purpose : save the results from the tests
+;;; : to a list.
+;;; Arguments : test-title (string),
+;;; : total (list of test results)
+;;; : setup-cmds
+;;; Returns : Creates a aunit-result-collection-class
+;;; : that contains: test results,
+;;; : number of tests, successful tests and
+;;; : aunit-results-class from each test.
+;;; Author : Lars Barlindhaug
+;;;
+(defun save-results (test-title total setup-cmds)
+  (when (not (or (equal test-title "set-up")
+                 (equal test-title "tear-down")))
+    (let ((successful-tests (count t (get-list-of-results total)))
+          (total-tests (length (get-list-of-results total)))
+          (result (= successful-tests total-tests)))
+      (let ((test-collection (add-object
+			      *current-test*
+			      (read-from-string test-title)
+			      'aunit-result-collection-class
+			      :init-form `(
+					   result ,result
+					   test-name ,test-title
+					   successful-tests ,successful-tests
+					   total-tests ,total-tests
+					   tests nil
+					   setup-cmds nil))))
+        (add-test-name-to-tests total test-title)
+        (change-value (the tests (:from test-collection)) total)
+        (change-value (the setup-cmds (:from test-collection)) setup-cmds)
+        (print test-collection)))))
+
+;;;----------------------------------------------------
+;;; Function : add-test-name-to-tests
+;;; Purpose : Adds the test name to each
+;;; : aunit-result-class test instance
+;;; Arguments : path (string, file path/file name)
+;;; Returns : string, file name/file path
+;;; Author : Lars Barlindhaug
+;;;
+(defun add-test-name-to-tests (tests test-name)
+  (loop for test in tests
+    if (typep test 'aunit-result-class)
+    do (change-value (the test-name (:from test)) test-name)))
+
+;;;----------------------------------------------------
+;;; Function : save-overall-results
+;;; Purpose : saves the results from each unit tests
+;;; : to a aunit-result-collection-class.
+;;; : Used by defaunit.
+;;; Arguments : test-title (string),
+;;; : total (list of test results)
+;;; : setup-cmds
+;;; Returns : Creates a aunit-result-collection-class
+;;; : that contains: test results,
+;;; : number of tests, successful tests and
+;;; : aunit-results-class from each test.
+;;; Author : Lars Barlindhaug
+;;;
+(defun save-overall-results (test-title total setup-cmds)
+  (let ((tests-results (get-number-success total))
+        (total-tests (nth 0 tests-results))
+        (successful-tests (nth 1 tests-results))
+        (result (equal total-tests successful-tests)))
+    (change-value (the result (:from *current-test*)) result)
+    (change-value (the test-name (:from *current-test*)) test-title)
+    (change-value (the successful-tests (:from *current-test*)) successful-tests)
+    (change-value (the total-tests (:from *current-test*)) total-tests)
+    (change-value (the tests (:from *current-test*)) total)
+    (change-value (the setup-cmds (:from *current-test*)) setup-cmds)
+    *current-test*))
+
+;;;----------------------------------------------------
+;;; Function : find-expected-value
+;;; Purpose : Finds the expected value of a test
+;;; : from the expected-values file.
+;;; Arguments : object-to-check
+;;; Returns : Expected value
+;;; Author : Lars Barlindhaug
+;;; History
+;;; Created on : 2011-08-07
+;;; Modified :
+;;;
+(defun find-expected-value (object-to-check)
+  (let ((expected-values *expected-values*))
+    (loop for key-value in expected-values
+      until (when (equal (nth 0 key-value) object-to-check)
+              (return (nth 1 key-value))))))
+
+;;;----------------------------------------------------
+;;; Function : get-list-of-results
+;;; Purpose : Gets a list of the result values from
+;;; : a list of aunit-result-classes
+;;; Arguments : list
+;;; Returns : List of result values (t/nil)
+;;; Author : Lars Barlindhaug
+;;;
+(defun get-list-of-results (list)
+  (loop for test-result in list
+    when (typep test-result 'aunit-result-class)
+    collect (the result (:from test-result))))
+
+;;;----------------------------------------------------
+;;; Function : get-number-success
+;;; Purpose : Gets the number of successful tests
+;;; : from a list of results.
+;;; Arguments : list
+;;; Returns : Number of successful tests
+;;; Author : Lars Barlindhaug
+;;;
+(defun get-number-success (list)
+  (loop
+    with number-of-tests = 0
+    with successful-tests = 0
+    for test-result in list
+    when (or (typep test-result 'aunit-result-test-class)
+	     (and (typep test-result 'aunit-result-collection-class)
+		  (not (equal (the test-name(:from test-result)) "set-up"))))
+    do
+    (setf number-of-tests (1+ number-of-tests))
+    (when (the result (:from test-result))
+      (setf successful-tests (1+ successful-tests)))
+    finally (return (list number-of-tests successful-tests))))
+
+;;;----------------------------------------------------
+;;; Function : get-window-resoltuion
+;;; Purpose : Gets the window resolution, can be used
+;;; : to ensure that check-image compares with
+;;; : an image in the correct resolution.
+;;; Arguments : -
+;;; Returns : Window resolution (pixels).
+;;; Author : Lars Barlindhaug
+;;;
+(defun get-window-resolution ()
+  (let ((window-coordinates (get-window-coordinates (the current-display))))
+    (list (nth 2 window-coordinates)
+          (nth 3 window-coordinates))))

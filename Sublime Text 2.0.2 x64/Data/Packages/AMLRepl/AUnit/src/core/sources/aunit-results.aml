@@ -1,0 +1,93 @@
+(in-package :aml)
+
+;;;----------------------------------------------------
+;;; Class : aunit-display-class
+;;; Inherit : object
+;;; Purpose : Empty class, controls which classes are
+;;; : displayed in the tree.
+;;; Notes : Class is empty with purpose.
+;;; Author : Lars Barlindhaug
+;;;
+(define-class aunit-display-class
+  :inherit-from(object)
+  )
+
+;;;----------------------------------------------------
+;;; Class : aunit-result-class
+;;; Inherit : object
+;;; Purpose : Holds the results of a test
+;;; Notes :
+;;; Author : Lars Barlindhaug
+;;;
+(define-class aunit-result-class
+  :inherit-from (object)
+  :properties (
+               result nil
+               test-name ""
+               type-of-test nil
+               tested-object nil
+               actual-value nil
+               expected-value nil
+               )
+  )
+
+;;;----------------------------------------------------
+;;; Class : aunit-result-collection-class
+;;; Inherit : aunit-display-class
+;;; Purpose : Holds the results of all the tests
+;;; : in a test set.
+;;; Notes :
+;;; Author : Lars Barlindhaug
+;;;
+(define-class aunit-result-collection-class
+  :inherit-from (aunit-display-class)
+  :properties (
+               result nil
+               test-name ""
+               successful-tests nil
+               total-tests nil
+               tests nil
+               setup-cmds nil
+               )
+  )
+
+;;;----------------------------------------------------
+;;; Class : aunit-result-test-class
+;;; Inherit : property-object
+;;; Purpose : Holds the results of each test.
+;;; Notes :
+;;; Author : Lars Barlindhaug
+;;;
+(define-class aunit-result-test-class
+  :inherit-from (aunit-result-collection-class)
+  )
+
+;;;----------------------------------------------------
+;;; Function : find-test-from-result
+;;; Purpose : Finds a test-object from a results object.
+;;; Arguments : result (aunit-result-class)
+;;; Returns : test object (aunit-framework-class)
+;;; Author : Lars Barlindhaug
+;;;
+(defun find-test-from-result (result)
+  (let ((test-name (object-name result))
+        (test-node (the superior superior test-fws (:from result)))
+        (pos (position test-name (subobjects test-node))))
+    (if pos
+        (nth pos (children test-node))
+      (format t "Error finding test ~a in ~a~%" test-name (subobjects test-node)))))
+
+;;;----------------------------------------------------
+;;; Function : find-result-from-test
+;;; Purpose : Finds a result-object from a test-object.
+;;; Arguments : test object (aunit-framework-class)
+;;; Returns : result (aunit-result-class)
+;;; Author : Lars Barlindhaug
+;;;
+(defun find-result-from-test (test)
+  (let ((test-name (object-name test))
+        (result-node (the superior superior results (:from test)))
+        (pos (position test-name (subobjects result-node))))
+    (if pos
+        (nth pos (children result-node))
+      (format t "Error finding result ~a in ~a~%" test-name (subobjects result-node)))))

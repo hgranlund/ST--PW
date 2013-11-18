@@ -1,0 +1,18 @@
+;;;----------------------------------------------------
+;;; System : :aunit-gui-system
+;;; Purpose : Graphical User Interface for
+;;; AML Unit testing framework
+;;;
+;;; Author : Lars Barlindhaug
+;;;
+(define-system :aunit-gui-system
+  :require-systems '(:aunit-core-system :aunit-print-system)
+  :files '(
+           "aunit-gui-browse.aml"
+           "aunit-gui-results-bar.aml"
+           "aunit-gui-progress-bar.aml"
+           "aunit-gui-result-text-field.aml"
+           "aunit-gui-tree.aml"
+           "aunit-gui.aml"
+           )
+  )

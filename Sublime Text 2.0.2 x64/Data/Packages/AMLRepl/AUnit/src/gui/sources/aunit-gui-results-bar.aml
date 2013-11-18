@@ -1,0 +1,43 @@
+(in-package :aml)
+
+(define-class aunit-gui-results-form-class
+  :inherit-from(ui-subform-class)
+  :properties(
+              frame? t
+              )
+  :subobjects(
+              (result-label :class 'ui-label-class
+                       x-offset 0
+                       y-offset 10
+                       width 10
+                       height 80
+                       label "Result")
+              
+              (result-field :class 'ui-field-class
+                       x-offset (+(the x-offset (:from ^^result-label))
+				  (the width (:from ^^result-label)))
+                       y-offset (the y-offset (:from ^^result-label))
+                       width 5
+                       height 80
+                       content ""
+                       editable? nil)
+              
+              (successful-label :class 'ui-label-class
+                       x-offset (+ (the x-offset (:from ^^result-field))
+				   (the width (:from ^^result-field))
+				   ^^element-x-margin)
+                       y-offset (the y-offset (:from ^^result-field))
+                       label "Successful tests"
+                       width 20
+                       height 80)
+              
+              (successful-field :class 'ui-field-class
+                       x-offset (+ (the x-offset (:from ^^successful-label))
+				   (the width (:from ^^successful-label)))
+                       y-offset (the y-offset (:from ^^successful-label))
+                       width 16
+                       height 80
+                       content "0/0 (0%)"
+                       editable? nil)
+              )
+  )

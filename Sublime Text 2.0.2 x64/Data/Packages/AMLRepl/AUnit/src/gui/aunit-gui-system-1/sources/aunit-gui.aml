@@ -1,0 +1,278 @@
+(in-package :aml)
+
+(define-class test-form-class
+  :inherit-from (ui-form-class)
+  :properties(
+              label "AUnit"
+              x-offset 300
+              y-offset 200
+              width 500
+              height 500
+              measurement 'percentage
+              side-margin 4
+              element-margin 10
+              element-x-margin 3
+              def-file ""
+              )
+  :subobjects(
+              (chosen-test-field :class 'ui-field-class
+                       x-offset ^^element-x-margin
+                       y-offset ^^side-margin
+                       width 60
+                       height 4
+                       content "Please browse for a test."
+                       editable? nil)
+              
+              (browse-def :class 'aunit-gui-browse-button-def-class
+                       x-offset (+ (the x-offset (:from ^^chosen-test-field))
+                                   (the width (:from ^^chosen-test-field))
+                                   2)
+                       y-offset ^^side-margin
+                       width 16
+                       height 4
+                       label "Load def")
+              
+              (browse :class 'aunit-gui-browse-button-file-class
+                       x-offset (+ (the x-offset (:from ^^browse-def))
+                                   (the width (:from ^^browse-def))
+                                   2)
+                       y-offset ^^side-margin
+                       width 12
+                       height 4
+                       label "Browse")
+              
+              (test-tree :class 'aunit-gui-tree-class
+                       x-offset ^^element-x-margin
+                       y-offset (the y-offset (:from ^^action))
+                       width 60
+                       height 50)
+              
+              (action :class 'ui-action-button-class
+                       x-offset (right-adjustment ^width ^^side-margin)
+                       y-offset (+ (the y-offset (:from ^^browse))
+                                   (the height (:from ^^browse))
+                                   ^^element-x-margin)
+                       width 20
+                       height 4
+                       label "Run all tests"
+                       gray? t
+                       button1-action '(execute-all-tests ^superior))
+              
+              (run-selected-test :class 'ui-action-button-class
+                       x-offset (right-adjustment ^width ^^side-margin)
+                       y-offset (+ (the y-offset (:from ^^action))
+                                   (the height (:from ^^action))
+                                   ^^element-x-margin)
+                       width 20
+                       height 4
+                       label "Run selected test"
+                       gray? t
+                       button1-action '(execute-single-test ^superior (the selected-item (:from ^^test-tree))))
+              
+              (save-test-def :class 'ui-action-button-class
+                       x-offset (right-adjustment ^width ^^side-margin)
+                       y-offset (+ (the y-offset (:from ^^run-selected-test))
+                                   (the height (:from ^^run-selected-test))
+                                   ^^element-margin)
+                       width 20
+                       height 4
+                       label "Save to def file"
+                       gray? t
+                       button1-action '(save-tree-to-file ^^test-tree))
+              
+              (clear-tree :class 'ui-action-button-class
+                       x-offset (right-adjustment ^width ^^side-margin)
+                       y-offset (+ (the y-offset (:from ^^save-test-def))
+                                   (the height (:from ^^save-test-def))
+                                   ^^element-x-margin)
+                       width 20
+                       height 4
+                       label "Clear all tests"
+                       gray? t
+                       button1-action '(clear-tree ^^test-tree))
+              
+              (test-output :class 'aunit-gui-result-text-field-class
+                       x-offset ^^element-x-margin
+                       y-offset (+ (the y-offset (:from ^^test-tree))
+                                   (the height (:from ^^test-tree))
+                                   ^^element-x-margin)
+                       width 94
+                       height 20)
+              
+              (results-bar :class 'aunit-gui-results-form-class
+                       x-offset 5
+                       y-offset 90
+                       width 90
+                       height 5)
+              
+              (status-bar :class 'aunit-gui-status-bar-class
+                       x-offset 5
+                       y-offset 85
+                       width 90
+                       height 5)
+              )
+  )
+
+(define-method display test-form-class ()
+  (call-next-method)
+  (set-topmost-form !self t))
+
+(defvar *gui-name-generator* 'nil)
+
+;;;----------------------------------------------------
+;;; Method : execute-all-tests
+;;; Purpose : Done when pressing "run all tests" btn
+;;; : Executes all the tests in the tree.
+;;; Arguments : test-result (aunit-result-collection-class)
+;;; Returns :
+;;; Author : Lars Barlindhaug
+;;;
+(define-method execute-all-tests test-form-class ()
+  (let ((sum-successful-tests 0)
+        (sum-total-tests 0))
+    (loop for test-result in (tree-item-children (the results))
+      do (let ((test (find-test-from-result test-result)))
+	   (if (typep test 'aunit-framework-class)
+	       (let ((result-list (execute-test (the) test)))
+		 (setf sum-successful-tests (+ sum-successful-tests (first result-list))
+		       sum-total-tests (+ sum-total-tests (second result-list)))))))
+    (update-test-results (the) sum-successful-tests sum-total-tests)))
+
+;;;----------------------------------------------------
+;;; Method : execute-test
+;;; Purpose : Done when pressing "run selected test" btn
+;;; : Executes the test or tests.
+;;; Arguments : test-result (aunit-result-collection-class
+;;; : or aunit-result-class)
+;;; Returns :
+;;; Author : Lars Barlindhaug
+;;;
+(define-method execute-single-test test-form-class (test-result)
+  (cond ((typep test-result 'aunit-result-test-class)
+	 (let ((test (find-test-from-result test-result))
+	       (result-list (execute-test (the) test))
+	       (successful-tests (first result-list))
+	       (total-tests (second result-list))
+	       (success-decimal (/ successful-tests total-tests)))
+	   (select-tree-item (the test-tree) (find-result-from-test test))
+	   (update-test-results (the) successful-tests total-tests)))
+	((typep test-result 'aunit-result-collection-class)
+	 (execute-single-test (the) (the superior (:from test-result))))
+	(t (execute-all-tests (the)))))
+
+;;;----------------------------------------------------
+;;; Method : execute-test
+;;; Purpose : Runs a test
+;;; Arguments : test (aunit-framework-class)
+;;; Returns : list with # of suc. tests and tot. tests.
+;;; Author : Lars Barlindhaug
+;;;
+(define-method execute-test test-form-class (test)
+  (let ((test-script-path (the test-script-path (:from test)))
+        (test-results (run-test test test-script-path))
+        (successful-tests (the successful-tests (:from test-results)))
+        (total-tests (the total-tests (:from test-results)))
+        (success-decimal (if (not (equal total-tests 0))
+                             (/ successful-tests total-tests)
+                           0)))
+    (the update?)
+    (open-branch (the test-tree) (find-result-from-test test) :all? t)
+    (set-test-result-image (the test-tree) (find-result-from-test test))
+    (list successful-tests total-tests)))
+
+;;;----------------------------------------------------
+;;; Method : update-test-results
+;;; Purpose : Updates the test results with the
+;;; : number and % of succuessful tests
+;;; : and the total number of tests.
+;;; Arguments : # of successful tests
+;;; : # of tests
+;;; Returns : -
+;;; Author : Lars Barlindhaug
+;;;
+(define-method update-test-results test-form-class (successful-tests total-tests)
+  (let ((success-decimal (if (not (equal total-tests 0))
+                             (/ successful-tests total-tests)
+                           (progn
+                             (print "ERROR divide by zero")
+                             0)))
+        (success? (if (equal successful-tests total-tests) 't)))
+    (replace-text (the results-bar successful-field)
+                  (format 'nil "~d/~d (~d%)"
+                          successful-tests
+                          total-tests
+                          (round (* 100 success-decimal))))
+    (replace-text (the results-bar result-field) (princ-to-string success?))
+    (update-root-img (the test-tree) success?)
+    (update-status-bar (the status-bar) success?)))
+
+;;;----------------------------------------------------
+;;; Method : evaluate-results-tree
+;;; Purpose : Method is called when clicking on a
+;;; : test in the tree.
+;;; : TODO Move to test tree, change class?
+;;; Arguments : results (aunit-result-collection-class
+;;; : or aunit-result-class)
+;;; Returns : -
+;;; Author : Lars Barlindhaug
+;;;
+(define-method evaluate-results-tree test-form-class (results)
+  (clear-results !test-output)
+  (evaluate-tree (the) results))
+
+;;;----------------------------------------------------
+;;; Method : evaluate-tree
+;;; Purpose : Recursively evaluates all the results
+;;; : belonging to the test and adds them to
+;;; : the text-box.
+;;; Arguments : results (aunit-result-collection-class
+;;; : or aunit-result-class)
+;;; Returns : -
+;;; Author : Lars Barlindhaug
+;;;
+(define-method evaluate-tree test-form-class (results)
+  (let ((test-results (the tests (:from results))))
+    (loop for test in test-results
+      when (typep test 'aunit-result-collection-class)
+      do (evaluate-tree (the) test)  
+      when (typep test 'aunit-result-class)
+      do (add-results !test-output test))))
+
+;;;----------------------------------------------------
+;;; Method : add-to-test-tree
+;;; Purpose : adds a test to the test tree in the GUI
+;;; :
+;;; Arguments : file-path to the test
+;;; Returns : -
+;;; Author : Lars Barlindhaug
+;;;
+(define-method add-to-test-tree test-form-class (file-path)
+  (let ((name (drop-dot-extension (file-namestring file-path))))
+    (if (test-already-in-tree? (read-from-string name) (tree-item-children (the test-tree root-object)))
+        (format t "Test: ~a is already added to the window~%" name)
+      (let ((test (add-object (the test-fws) (read-from-string name) 'aunit-framework-class
+                              :init-form `(test-script-path ,file-path))))
+        (set-up test)
+        (the update?)
+        (set-all-images (the test-tree) (find-result-from-test test) *grey-img*)
+        (select-tree-item (the test-tree) (the results))
+        (open-branch (the test-tree) (the results))))))
+
+;;;----------------------------------------------------
+;;; Function : right-adjustment
+;;; Purpose : Calculates the placement for adjusting
+;;; : gui components to the right-side of
+;;; : the window.
+;;; Author : Lars Barlindhaug
+;;;
+(defun right-adjustment (width side-margin)
+  (- 100 width side-margin))
+
+;;;----------------------------------------------------
+;;; Function : aunit
+;;; Purpose : starts aunit
+;;; Author : Lars Barlindhaug
+;;;
+(defun aunit ()
+  (let ((form (display-form 'test-form-class :new? t)))
+    (prepare-tree (the test-tree (:from form)))))

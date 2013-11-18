@@ -1,0 +1,14 @@
+;;;----------------------------------------------------
+;;; System : :aunit-main-system
+;;; Purpose : main system for aUnit
+;;; AML Unit testing framework
+;;;
+;;; Author : GI
+;;;
+(define-system :aunit-main-system
+  :require-systems '(
+		     :aunit-core-system
+		     :aunit-print-system
+		     :aunit-gui-system
+		     )
+  )

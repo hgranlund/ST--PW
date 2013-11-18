@@ -1,0 +1,91 @@
+(in-package :aml)
+
+;;;----------------------------------------------------
+;;; Function : write-html-header
+;;; Purpose : writes the HTML header tags,
+;;; : date and starts the BODY and TABLE.
+;;; Arguments :
+;;; Returns :
+;;; Author : Lars Barlindhaug
+;;;
+(defun write-html-header (html-file)
+  (format html-file "
+<HTML>~%
+<HEAD>~%
+<style type=\"text/css\">~%
+td {text-aling:left; font-size:100%;}~%
+td.fail {color:red;}~%
+td.pass {color:green;}~%
+td.header {text-align:center; font-size:120%; font-weight:bold;}~%
+tr.heading {text-align:left; font-size:100%; font-weight:bold;}~%
+tr.result {font-weight:bold}~%
+</style>~%
+</HEAD>~%
+<BODY>~%")
+  (let ((date-list (today :values? t)))
+    (format html-file "<p>~%~a ~a ~%</p>~%" (nth 1 date-list) (nth 0 date-list)))
+  (format html-file "<table border=\"0\">~% ")
+  (defvar *test-collection-header?* t))
+
+;;;----------------------------------------------------
+;;; Function : write-html-footer
+;;; Purpose : writes the AML info and then the
+;;; : end tags for BODY and HTML header tags.
+;;; Arguments :
+;;; Returns :
+;;; Author : Lars Barlindhaug
+;;;
+(defun write-html-footer (html-file)
+  (format html-file "</table>~% ")
+  (format html-file "<pre>~%~a~%~%</pre>~%~%" (report-aml-component-updates))
+  (format html-file "</BODY>~% </HTML>"))
+
+(defun write-test-collection-name (html-file result-collection)
+  (format html-file "<tr> <td class=\"header\" colspan=\"4\">~a</td></tr>~%"
+          (the test-name (:from result-collection))))
+
+(defun write-test-collection-header (html-file)
+  (format
+   html-file
+   "<tr class=\"heading\"> <td>Result:</td> <td>Tested object:</td> <td>Actual value:</td> <td>Expected value:</td></tr>~%"))
+
+(defun write-test-collection-footer (html-file result-collection)
+  (format html-file "<tr class=\"result\"> ~a <td>~a</td> <td colspan=\"2\">Successful: ~d/~d (~,2f%) </td></tr>~%"
+          (get-pass-or-fail (the result (:from result-collection)))
+          (the test-name (:from result-collection))
+          (the successful-tests (:from result-collection))
+          (the total-tests (:from result-collection))
+          (calculate-percentage (the total-tests (:from result-collection))
+                                (the successful-tests (:from result-collection))))
+  (format html-file "<tr> <td colspan=\"4\">&nbsp</td> </tr>~%"))
+
+(defun write-test-result-html (html-file test-result)
+  (format html-file "<tr> ~a <td>~a: ~a</td> <td>~a</td> <td>~a</td> </tr>~%"
+          (get-pass-or-fail (the result (:from test-result)))
+          (the type-of-test (:from test-result))
+          (the tested-object (:from test-result))
+          (the actual-value (:from test-result))
+          (the expected-value (:from test-result))))
+
+(defun write-test-result-txt (txt-file test-result)
+  (format txt-file "(~a ~a)~%"
+          (the tested-object (:from test-result))
+          (the actual-value (:from test-result))))
+
+(defun write-setup (html-file test-result)
+  (format html-file "<tr>~a <td colspan=\"3\">~a</td> </tr>~%"
+          "<td class=\"pass\">DONE</td>"
+          test-result))
+
+;;;----------------------------------------------------
+;;; Function : get-pass-or-fail
+;;; Purpose : depending on result,
+;;; : returns a string PASS or FAIL.
+;;; Arguments : result (boolean)
+;;; Returns : PASS or FAIL (string)
+;;; Author : Lars Barlindhaug
+;;;
+(defun get-pass-or-fail (result)
+  (if result
+      "<td class=\"pass\">PASS</td>"
+    "<td class=\"fail\">FAIL</td>"))

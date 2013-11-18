@@ -1,0 +1,34 @@
+(in-package :aml)
+
+;;;----------------------------------------------------
+;;; Class : aunit-filo-io-class
+;;; Inherit : object
+;;; Purpose : Writes the output files and reads the
+;;; : expected values files
+;;; : Default location is C:\Data.
+;;; Notes :
+;;; Author : Lars Barlindhaug
+(define-class aunit-file-io-class
+  :inherit-from (object)
+  :properties (
+               folder-path (default "C:\\Data")
+               expected-folder-path (default (logical-path ^folder-path "expected"))
+               )
+  )
+
+(defvar *expected-values* nil)
+
+;;;----------------------------------------------------
+;;; Method : load-expected-values
+;;; Purpose : loads the expected values from file.
+;;; Arguments : -
+;;; Returns : list of expected values
+;;; Author : Lars Barlindhaug
+;;;
+(define-method load-expected-values aunit-file-io-class ()
+  (let ((expected-results-file-path (logical-path !expected-folder-path "results.txt")))
+    (with-open-file (expected-results-file expected-results-file-path :direction :input :if-does-not-exist nil)
+      (loop for line = (read-line expected-results-file nil :eof)
+        until (equal line :eof)
+        for eachline = (read-from-string line)
+        collect eachline))))

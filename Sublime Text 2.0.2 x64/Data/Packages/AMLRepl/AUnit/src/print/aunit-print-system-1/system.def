@@ -1,0 +1,14 @@
+;;;----------------------------------------------------
+;;; System : :aunit-print-system
+;;; Purpose : Printing tool for
+;;; AML Unit testing framework
+;;;
+;;; Author : Lars Barlindhaug
+;;;
+(define-system :aunit-print-system
+  :require-systems '(:aunit-core-system)
+  :files '(
+           "aunit-print-html.aml"
+           "aunit-print.aml"
+           )
+  )

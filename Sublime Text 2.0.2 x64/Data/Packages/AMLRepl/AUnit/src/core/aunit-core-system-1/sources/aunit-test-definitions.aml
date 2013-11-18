@@ -1,0 +1,212 @@
+(in-package :aml)
+
+;;;----------------------------------------------------
+;;; Class : aunit-test-definitions-class
+;;; Inherit : object
+;;; Purpose : Sets the output and expected folder paths.
+;;; Notes :
+;;; Author : Lars Barlindhaug
+(define-class aunit-test-definitions-class
+  :inherit-from (object)
+  :properties (
+               output-folder-path (default "C:\\Data\\output")
+               expected-folder-path (default "C:\\Data\\expected")
+               ))
+
+;;;----------------------------------------------------
+;;; Macro : check-equals
+;;; Purpose : Compares two values
+;;; : and sends the result to report-result.
+;;; : int with same value and strings in
+;;; : different cases will return t
+;;; Arguments : actual-value
+;;; : expected-value (optional)
+;;; Returns : List of tested values and result bool.
+;;; Author : Lars Barlindhaug
+;;;
+(defmacro check-equals (actual-value &optional (expected-value-arg 'nil))
+  (let ((expected-value (or expected-value-arg
+			    (find-expected-value actual-value))))
+;(format 't "check-equals ~a ~a~%" actual-value expected-value)
+    `(report-result (with-error-handler
+		     (:error-return-value 'nil)
+		     (equalp ,actual-value ,expected-value))
+		    "check equals"
+		    ',actual-value
+		    ,actual-value
+		    ,expected-value)))
+
+;;;----------------------------------------------------
+;;; Macro : check-equals-strict
+;;; Purpose : Compares two values
+;;; : and sends the result to report-result.
+;;; : int with same value and strings in
+;;; : different cases will return nil
+;;; Arguments : actual-value
+;;; : expected-value (optional)
+;;; Returns : List of tested values and result bool.
+;;; Author : Lars Barlindhaug
+;;;
+(defmacro check-equals-strict (actual-value &optional (expected-value-arg 'nil))
+  (let ((expected-value (or expected-value-arg
+			    (find-expected-value actual-value))))
+;(format 't "check-equals ~a ~a~%" actual-value expected-value)
+    `(report-result (with-error-handler
+		     (:error-return-value 'nil)
+		     (equal ,actual-value ,expected-value))
+		    "check equals strict"
+		    ',actual-value
+		    ,actual-value
+		    ,expected-value)))
+
+;;;----------------------------------------------------
+;;; Macro : check-not-nil
+;;; Purpose : Checks if an expression evaluates to
+;;; : something else than nil
+;;; : and sends the result to report-result.
+;;; Arguments : actual-value
+;;; Returns : List of tested values and result bool.
+;;; Author : Lars Barlindhaug
+;;;
+(defmacro check-not-nil (actual-value)
+;(format 't "check-not-nil ~a~%" actual-value)
+  `(report-result (with-error-handler
+		   (:error-return-value 'nil)
+		   (not (equal ,actual-value nil)))
+		  "check not nil"
+		  ',actual-value
+		  ,actual-value
+		  "not nil"))
+
+;;;----------------------------------------------------
+;;; Macro : check-nil
+;;; Purpose : Checks if an expression evaluates to nil
+;;; : and sends the result to report-result.
+;;; Arguments : actual-value
+;;; Returns : List of tested values and result bool.
+;;; Author : Lars Barlindhaug
+;;;
+(defmacro check-nil (actual-value)
+;(format 't "check-nil ~a~%" actual-value)
+  `(report-result (with-error-handler
+		   (:error-return-value 'nil)
+		   (equal ,actual-value nil))
+		  "check nil"
+		  ',actual-value
+		  ,actual-value
+		  "nil"))
+
+;;;----------------------------------------------------
+;;; Macro : check-delta
+;;; Purpose : Checks if two values are withing a
+;;; : difference delta from each other
+;;; : and sends the result to report-result.
+;;; Arguments : actual-value
+;;; : expected-value
+;;; : delta
+;;; Returns : List of tested values and result bool.
+;;; Author : Lars Barlindhaug
+;;;
+(defmacro check-delta (actual-value expected-value delta)
+;(format 't "check-delta ~a ~a~%" actual-value expected-value)
+  `(report-result (with-error-handler
+		   (:error-return-value 'nil)
+		   (roughly-equal ,actual-value ,expected-value ,delta))
+		  "check delta"
+		  ',actual-value
+		  ,actual-value
+		  (format 'nil "(~f +/- ~f)" ,expected-value ,delta)))
+
+;;;----------------------------------------------------
+;;; Macro : check-range
+;;; Purpose : check if a value is within a range
+;;; : and sends the result to report-result.
+;;; Arguments : actual-value, range-min, range-max
+;;; Returns : List of tested values and result bool.
+;;; Author : Kim Nguyen (based on LB's check-equal)
+;;;
+(defmacro check-range (actual-value range-min range-max)
+;(format 't "check-range ~a ~a ~a ~%" actual-value range-min range-max)
+  `(report-result (with-error-handler
+		   (:error-return-value 'nil)
+		   (< ,range-min ,actual-value ,range-max))
+		  "check range"
+		  ',actual-value
+		  ,actual-value
+		  (format 'nil "(~a - ~a)" ,range-min ,range-max)))
+
+(defun check-list-diff (list1 list2 diff)
+  (check-equals (list-diff list1 list2) diff))
+
+(defun list-diff (list1 list2)
+  (when (equal (length list1) (length list2))
+    (loop for i from 0 to (- (length list1) 1)
+      collect (- (nth i list1) (nth i list2)) into diff-list
+      finally (return diff-list))))
+
+(defmacro check-list-delta (actual-value expected-value delta)
+  `(report-result (with-error-handler
+		   (:error-return-value 'nil)
+		   (not (list-delta-is-incorrect? ,actual-value ,expected-value ,delta)))
+;(roughly-equal ,actual-value ,expected-value ,delta))
+		  "check list delta"
+		  ',actual-value
+		  ,actual-value
+		  (format 'nil "(~a +/- ~a)" ,expected-value ,delta)))
+
+(defun list-delta-is-incorrect? (list1 list2 delta)
+  (or (null list1)
+      (null list2)
+      (loop for actual-value in list1
+	for expected-value in list2
+	when (not (roughly-equal actual-value expected-value delta))
+	do (return t))))
+
+;;;----------------------------------------------------
+;;; Function : check-image
+;;; Purpose : Calls export-image
+;;; : Checks if the exported image equals a
+;;; : reference image.
+;;; Arguments : image-description (string)
+;;; Returns : report-result return value
+;;; : kbe-test-results-class.
+;;; Author : Lars Barlindhaug
+;;;
+(defun check-image (image-description)
+  (let ((current-image-file-path (logical-path *output-folder-path* image-description ".tif"))
+        (reference-image-file-path (logical-path *expected-folder-path* image-description ".tif")))
+    (export-image image-description current-image-file-path)
+    (print current-image-file-path)
+    (print reference-image-file-path)
+    (report-result (with-error-handler
+		    (
+		     :error-function 'write-error-string
+		     :error-function-argument 'nil
+		     :error-return-value 'nil
+		     )
+		    (kbe-identical-filestreams? reference-image-file-path current-image-file-path))
+		   "check image"
+		   image-description
+		   (format 'nil "<a href=\"images\\~a.tif.png\"><img src=\"images\\~a.tif-thumb.png\" width=\"384\" height=\"224\" /></a>"
+			   image-description
+			   image-description)
+		   (format 'nil "<a href=\"..\\expected\\images\\~a.tif.png\"><img src=\"..\\expected\\images\\~a.tif-thumb.png\" width=\"384\" height=\"224\" /></a>"
+			   image-description
+			   image-description))))
+
+;;;----------------------------------------------------
+;;; Function : export-image
+;;; Purpose : export an image to a file
+;;; Arguments : image-description (string)
+;;; Returns :
+;;; Author : Lars Barlindhaug
+;;;
+(defun export-image (image-description current-image-file-path)
+  (output-display :filepath current-image-file-path
+                  :format ':tiff :line-width-scale 0.5 :min-line-width 1 :fore-color 'black)
+  (let ((png-image-file-path (format 'nil "~a.png" current-image-file-path))
+        (png-thumb-image-file-path (format 'nil "~a-thumb.png" current-image-file-path)))
+    (output-display :filepath png-image-file-path
+                    :format ':png :line-width-scale 0.5 :min-line-width 1 :fore-color 'black)
+    (output-display :filepath png-thumb-image-file-path
+                    :format ':png :image-width 384 :image-height 224 :line-width-scale 0.5 :min-line-width 1 :fore-color 'black)))

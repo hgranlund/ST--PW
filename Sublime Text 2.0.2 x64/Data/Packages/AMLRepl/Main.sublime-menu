@@ -13,6 +13,7 @@
             { "caption": "Reference manual", "command": "aml_reference_manual" },
             { "caption": "Start", "command": "aml_repl" },
             { "caption": "AML Gui", "command": "aml_gui" },
+            { "caption": "AUnit", "command": "aunit_gui" },
             { "caption": "Quit", "command": "repl_quit" }
         ]
     }]

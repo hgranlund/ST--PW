@@ -1,0 +1,35 @@
+(in-package :aml)
+
+(define-class aunit-gui-bar-class
+  :inherit-from (ui-subform-class)
+  :properties (
+	       x-offset (default 1)
+	       y-offset 5
+	       width 2
+	       height 90
+	       background-color (default 'red)
+	       )
+  )
+
+;;STATUS bar
+;; either completely RED or completely GREEN
+(define-class aunit-gui-status-bar-class
+  :inherit-from (series-object ui-subform-class)
+  :properties (
+	       ;;ui-subform properties
+	       frame? t
+	       ;;series-object properties
+	       quantity 33
+	       class-expression 'aunit-gui-bar-class
+	       init-form '(
+			   x-offset (+ (* (+ ^space ^width) ^index) ^space)
+			   background-color (if ^success? 'green 'red)
+			   )
+	       space 1
+	       success? nil
+	       )
+  )
+
+(define-method update-status-bar aunit-gui-status-bar-class (success?)
+  (change-value !success? success?)
+  !update?)

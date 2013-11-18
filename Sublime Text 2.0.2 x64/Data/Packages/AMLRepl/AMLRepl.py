@@ -167,3 +167,22 @@ class AmlGuiCommand(sublime_plugin.TextCommand):
             output_view.run_command('output_lines')
         else:
             output_view.insert(edit, output_view.size(), "No AML process initialized. Please restart AMLRepl.\n")
+
+class AunitGuiCommand(sublime_plugin.TextCommand):
+    def run(self, edit):
+        if repl_process:
+            output_view.insert(edit, self.view.size(), "\n")
+
+            repl_process.stdin.write("%s\n" % "(compile-system :aunit-core-system)") 
+            output_view.run_command('output_lines')
+            repl_process.stdin.write("%s\n" % "(compile-system :aunit-print-system)") 
+            output_view.run_command('output_lines')
+            repl_process.stdin.write("%s\n" % "(compile-system :aunit-gui-system)") 
+            output_view.run_command('output_lines')
+            repl_process.stdin.write("%s\n" % "(compile-system :aunit-main-system)") 
+            output_view.run_command('output_lines')
+            
+            repl_process.stdin.write("%s\n" % "(aunit)") 
+            output_view.run_command('output_lines')
+        else:
+            output_view.insert(edit, output_view.size(), "No AML process initialized. Please restart AMLRepl.\n")

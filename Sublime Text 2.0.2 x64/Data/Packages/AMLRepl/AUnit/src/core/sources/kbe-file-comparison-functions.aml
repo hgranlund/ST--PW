@@ -1,0 +1,78 @@
+;;;----------------------------------------------------
+;;; Function : identical-filestreams?
+;;; Purpose :
+;;; Arguments :
+;;; Returns :
+;;; Author : Geir Iversen
+;;; History
+;;; Created on : 2011-03-01
+;;; Modified :
+
+;;; files are not compared for last changed date etc. hence, filestream and not file identical
+(defun kbe-identical-filestreams? (filepath-1 filepath-2 &key debug?)
+  (let ((file1 (or (probe-file filepath-1) (kbe-error-file-not-found filepath-1)))
+        (file2 (or (probe-file filepath-2) (kbe-error-file-not-found filepath-2)))
+        (difference? (/= (file-length file1) (file-length file2)));;avoid char-by-char comparison unless needed
+        )
+    (when debug? (format 't "File lengths filepath-1: ~a filepath-2: ~a~%"
+                         (file-length file1)
+                         (file-length file2)))
+    (unless difference?
+      (with-open-file (f1 file1 (:direction :input))
+        (with-open-file (f2 file2 (:direction :input))
+          (loop for read1 = (read-char f1 t :eof)
+            for read2 = (read-char f2 t :eof)
+            for i upfrom 1
+            until (or difference? (equal :eof read1) (equal :eof read2))
+            do
+            (setf difference? (not (equal read1 read2)))
+            (when debug? (format t "~a 1: ~a 2: ~a~%" i read1 read2))
+            ))))
+    ;;return
+    (not difference?)
+    ))
+
+;;;----------------------------------------------------
+;;; Function :
+;;; Purpose :
+;;; Arguments :
+;;; Returns :
+;;; Author : Geir Iversen
+;;; History
+;;; Created on : 2011-03-02
+;;; Modified :
+;;;
+;;; TODO reimplement this method using xml-parser - now performs byte by byte comparison, ignoring GUIDs and xml comments
+;;;
+(defun kbe-compare-akxml-exports (filepath-1 filepath-2)
+  (let ((file1 (or (probe-file filepath-1) (kbe-error-file-not-found filepath-1)))
+        (file2 (or (probe-file filepath-2) (kbe-error-file-not-found filepath-2)))
+        (difference? nil)
+        )
+    (with-open-file (f1 file1 (:direction :input))
+      (with-open-file (f2 file2 (:direction :input))
+        (loop for read1 = (kbe-xml-read-ignore-comments-and-ids f1 t :eof)
+          for read2 = (kbe-xml-read-ignore-comments-and-ids f2 t :eof)
+          for i upfrom 1
+          until (or (equal :eof read1) (equal :eof read2))
+          if (not (equal read1 read2))
+          collect (list read1 read2) into differences
+          finally (if (and (equal :eof read1) (equal :eof read2))
+                      (return differences)
+                    (return (append differences
+                                    (list
+                                     (let ((f (if (equal :eof read1)
+                                                  file1
+                                                file2)))
+                                       (format 'nil "~a bytes from ~a" (file-length f) f)))
+                                    ))))))))
+;; helper function for kbe-compare-akxml-exports
+(defun kbe-xml-read-ignore-comments-and-ids (stream &optional (eof-error-p 'nil) (eof-value :eof))
+  (let ((r (read stream t :eof)))
+    (if (equal r '<);; hotfix - identifies "start comment" because <!-- is read as 2 tokens: '< and (the --)
+        (loop for rr = (read stream eof-error-p eof-value)
+          until (or (equal rr '-->) (equal rr :eof))
+          finally (return rr));; returning -->, because next token may be "start comment" or id
+      (if (and (stringp r) (or (find "ID" r) (find "id" r)));; skip GUID strings by performing an additional read
+          (read stream t :eof)
+        r))));;return r unless comment or string containing ID

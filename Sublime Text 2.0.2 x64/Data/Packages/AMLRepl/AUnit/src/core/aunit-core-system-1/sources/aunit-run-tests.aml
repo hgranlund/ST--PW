@@ -1,0 +1,18 @@
+(in-package :aml)
+
+;;;----------------------------------------------------
+;;; Function : run-test
+;;; Purpose : Main function of the aunit test framework
+;;; : It takes in a path to a folder containing
+;;; : a test-script.aml.
+;;; Arguments : folder-path (string)
+;;; Returns :
+;;; Author : Lars Barlindhaug
+;;;
+(defun run-test (aunit test-script-path)
+  (print "run-test")
+  (clean aunit)
+  (let ((result (load (format 'nil "~a" test-script-path))))
+    (format 't "Result: ~a" result)
+    (print-results (the print (:from aunit)) result)
+    result))

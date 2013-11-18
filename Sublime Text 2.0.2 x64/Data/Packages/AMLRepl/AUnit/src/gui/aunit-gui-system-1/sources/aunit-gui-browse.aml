@@ -1,0 +1,54 @@
+(in-package :aml)
+
+(define-class aunit-gui-browse-button-class
+  :inherit-from (ui-action-button-class)
+  )
+
+(define-class aunit-gui-browse-button-file-class
+  :inherit-from (aunit-gui-browse-button-class)
+  :properties (
+	       button1-action '(let ((file-path (select-file-dialog :filter "*.aml")))
+				 (when (not (equal file-path nil))
+				   (add-to-test-tree (the superior superior) file-path)
+				   (file-selected-update-gui file-path)))
+	       )
+  )
+
+(define-class aunit-gui-browse-button-def-class
+  :inherit-from (aunit-gui-browse-button-class)
+  :properties (
+	       button1-action '(let ((file-path (select-file-dialog :filter "*.def")))
+				 (when (not (equal file-path nil))
+				   (change-value ^^def-file file-path)
+				   ;;reverse, starts with last item which is placed at the bottom of the list.
+				   (loop for test-file-path in (reverse (get-tests-from-def-file file-path))
+				     do (add-to-test-tree
+					 (the superior superior)
+					 (logical-path (directory-string file-path)
+						       test-file-path)))
+				   (file-selected-update-gui file-path)))
+	       )
+  )
+
+(defun get-tests-from-def-file (file)
+  (with-open-file (file file
+                        :direction :input)
+    (loop for line = (read-line file nil :eof)
+      until (equal line :eof)
+      collect line)))
+
+(defun file-selected-update-gui (file-path)
+  (replace-text (the superior chosen-test-field) file-path)
+  (change-value (the superior action gray?) nil)
+  (change-value (the superior run-selected-test gray?) nil)
+  (change-value (the superior save-test-def gray?) nil)
+  (change-value (the superior clear-tree gray?) nil)
+  (the superior superior update?))
+
+(defun reset-update-gui ()
+  (replace-text (the superior chosen-test-field) "")
+  (change-value (the superior action gray?) t)
+  (change-value (the superior run-selected-test gray?) t)
+  (change-value (the superior save-test-def gray?) t)
+  (change-value (the superior clear-tree gray?) t)
+  (the superior superior update?))

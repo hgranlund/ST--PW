@@ -1,0 +1,12 @@
+(defaunit "Sample  test"
+  (deftest 'set-up
+    (print "setting up test"))
+  
+  (deftest 'test-int-equal
+    (check-equals (+ 2 2) 4))
+  
+  (deftest 'test-int-float-equal
+    (check-equals 2 2.0))
+  
+  (deftest 'test-string-equal
+    (check-equals "hi" "hi")))

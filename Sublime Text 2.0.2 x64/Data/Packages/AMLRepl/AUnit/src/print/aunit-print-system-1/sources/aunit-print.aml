@@ -1,0 +1,104 @@
+(in-package :aml)
+
+(define-class aunit-print-class
+  :inherit-from (object)
+  :properties (
+               folder-path (default "C:\\Data")
+               output-folder-path (default (logical-path ^folder-path "output"))
+               output-file-name (default "results")
+               html-output-file-path (default (logical-path ^output-folder-path (concatenate ^output-file-name ".html")))
+               txt-output-file-path (default (logical-path ^output-folder-path (concatenate ^output-file-name ".txt")))
+               pass-file-path (default (logical-path ^output-folder-path "pass"))
+               )
+  )
+
+;;;----------------------------------------------------
+;;; Method : print-results
+;;; Purpose : Prints the results to output html and
+;;; : txt files.
+;;; Arguments : results
+;;; Returns : -
+;;; Author : Lars Barlindhaug
+;;;
+(define-method print-results aunit-print-class (test-result)
+  (when (not (directory? !output-folder-path))
+    (create-directory !output-folder-path))
+  (file-delete !pass-file-path)
+  (file-delete !html-output-file-path)
+  (file-delete !txt-output-file-path)
+  (with-open-file (html-output-file (the html-output-file-path) :direction :output)
+    (write-html-header html-output-file)
+    (with-open-file (results-txt-file (the txt-output-file-path) :direction :output)
+      (print-result-collection html-output-file results-txt-file test-result))
+    (write-html-footer html-output-file))
+  (when (the result (:from test-result))
+    (with-open-file (pass-file !pass-file-path :direction :output)
+      (format pass-file "PASS"))))
+
+;;;----------------------------------------------------
+;;; Function : print-result-collection
+;;; Purpose : Loops over each
+;;; : aunit-result-collection-class
+;;; : and writes the results to the
+;;; : log file with HTML markup.
+;;; : Called by print-results,
+;;; : calls print-test-result.
+;;; Arguments : results
+;;; Returns :
+;;; Author : Lars Barlindhaug
+;;;
+(defun print-result-collection (html-file txt-file result-collection)
+  (unless *test-collection-header?*
+    (setf *test-collection-header?* t))
+  (write-test-collection-name html-file result-collection)
+  (let ((all-tests (the tests (:from result-collection))))
+    (loop for test-results in all-tests
+      if (typep test-results 'aunit-result-collection-class)
+      do (print-result-collection html-file txt-file test-results)
+      else
+      do (print-test-result html-file txt-file test-results)))
+  (loop for setup-cmd in (the setup-cmds (:from result-collection))
+    do (print-setup-command setup-cmd))
+  (write-test-collection-footer html-file result-collection))
+
+;;;----------------------------------------------------
+;;; Function : print-test-result
+;;; Purpose : Loops over each aunit-results-class
+;;; : and writes the results to the
+;;; : log file with HTML markup.
+;;; : Called by print-result-colllection.
+;;; Arguments : results
+;;; Returns :
+;;; Author : Lars Barlindhaug
+;;;
+(defun print-test-result (html-file txt-file test-result)
+  (select-model test-result)
+  (cond ((typep test-result 'aunit-result-class)
+	 (print-test-collection-header html-file)
+	 (write-test-result-html html-file test-result)
+	 (write-test-result-txt txt-file test-result))
+	((equal (type-of test-result) 'cons)     
+	 (print-test-collection-header html-file)
+	 (write-setup html-file test-result))))
+
+(defun print-test-collection-header (html-file)
+  (when *test-collection-header?*
+    (write-test-collection-header html-file)
+    (setf *test-collection-header?* nil)))
+
+;;;----------------------------------------------------
+;;; Function : calculate-percentage
+;;; Purpose : Finds the percentage of successful
+;;; : tests, when there are no tests it
+;;; : returns 100%.
+;;; Arguments : total-tests (integer)
+;;; : successful-tests (integer)
+;;; Returns : percentage (float)
+;;; Author : Lars Barlindhaug
+;;;
+(defun calculate-percentage (total-tests successful-tests)
+  (if (not (= 0 total-tests))
+      (* (/ successful-tests
+	    total-tests)
+         100)
+    100))

@@ -1,0 +1,18 @@
+;;;----------------------------------------------------
+;;; System : :aunit-core-system
+;;; Purpose : AML Unit testing framework
+;;;
+;;;
+;;; Author : Lars Barlindhaug
+;;;
+
+(define-system :aunit-core-system
+  :files '(
+           "aunit-results.aml"
+           "aunit-file-io.aml"
+           "aunit-test-definitions.aml"
+           "aunit-framework.aml"
+           "aunit-run-tests.aml"
+           "kbe-file-comparison-functions.aml"
+           )
+  )
