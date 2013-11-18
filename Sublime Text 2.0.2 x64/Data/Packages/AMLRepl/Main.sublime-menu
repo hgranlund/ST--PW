@@ -29,6 +29,12 @@
             "caption": "AMLRepl",
             "children":
             [{
+                "command" : "open_file",
+                "args": {"file": "${packages}/AMLRepl/README.md"},
+                "caption": "Readme"
+            },
+            { "caption": "-" },
+            {
                 "command": "open_file",
                 "args": {"file": "${packages}/AMLRepl/AMLRepl.sublime-settings"},
                 "caption": "Settings"
