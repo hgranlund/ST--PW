@@ -6,7 +6,9 @@ Sublime Text 2 plugin to run an AML interpreter (REPL) inside a Sublime Text 2 v
 
 The AML Repl plugin is already installed on this portable version of Sublime Text 2. You only have to configure the plugin with the paths to the AML resources. This configuration is done from `Preferences -> Package Settings -> AMLRepl -> Settings`.
 
-Please refer to AUnit\README.md for installation of the AUnit test framework.
+Please refer to /Data/Packages/AMLRepl/AUnit/README.md for installation of the AUnit test framework.
+
+
 
 ## Usage
 
